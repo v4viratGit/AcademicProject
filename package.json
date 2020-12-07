@@ -1,0 +1,23 @@
+{
+  "name": "academicproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/v4viratGit/AcademicProject.git"
+  },
+  "author": "Virat Kamble",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/v4viratGit/AcademicProject/issues"
+  },
+  "homepage": "https://github.com/v4viratGit/AcademicProject#readme"
+}
