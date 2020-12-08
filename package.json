@@ -1,9 +1,10 @@
 {
   "name": "academicproject",
   "version": "1.0.0",
-  "description": "",
+  "description": "Academic project of Final year engineering",
   "main": "app.js",
   "dependencies": {
+    "ejs": "^3.1.5",
     "express": "^4.17.1"
   },
   "devDependencies": {},
