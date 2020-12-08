@@ -1,23 +1,27 @@
+<!--HEADER-->
 <%- include("partials/header.ejs") %>
 
-<div class="container pr-0 pl-0">
-    <div class="row">
-      <div class="col-md-6">
-            <h1>Welcome to RPServices!</h1>
+
+<!--CAROUSEL AND LANDING PAGE GREETING-->
+<div class="container border border-warning my-3">
+    <div class="row text-center">
+      <div class="col-md-6 my-2 d-flex flex-column justify-content-center align-items-center">
+            <h2>Welcome to RPServices!</h1>
             <h4>The best place to get maids online in India</h4>
             <h6>#1 HOME CLEANING SERVICE</h6>
+            <button type="button" class="btn btn-warning">Book Now</button>
       </div>
-      <div class="col-md-6">
+      <div class="col-md-6 my-2">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active">    
-                  <img src="https://hometriangle.com/imagecache/media/11219/htr-image-my-collections-178-11219.jpg?size=800x600-0" class="d-block w-100" alt="...">
+                  <img src="/images/image.jpg" class="d-block w-100" alt="carousel image 1">
               </div>
               <div class="carousel-item">
-                <img src="https://cleanmyspace.com/wp-content/uploads/2018/03/10-rules-for-a-cleaner-home.jpg" class="d-block w-100" alt="...">
+                <img src="/images/image1.jpg" class="d-block w-100" alt="carousel image 2">
               </div>
               <div class="carousel-item">
-                <img src="https://i2.wp.com/salmanzafar.me/wp-content/uploads/2020/02/DIY-Home-Cleaning-Tips.jpg?w=640&ssl=1" class="d-block w-100" alt="...">
+                <img src="/images/image2.jpg" class="d-block w-100" alt="carousel image 3">
               </div>
             </div>
           </div>
@@ -25,9 +29,114 @@
     </div>
   </div>
 
+<!--SERVICES CARDS-->
+<div class="container">
+  <div class="row g-2">
+    <div class="col-6 col-md-3">
+      <div class="card text-center h-100">
+        <img src="/images/deep cleaning.jpg" class="card-img-top" alt="deep cleaning">
+        <div class="card-body">
+          <h5 class="card-title">Deep Cleaning</h5>
+          <p class="card-text">Get your house deep cleaned by the best professionals.</p>
+            <a href="#" class="btn btn-warning">BOOK NOW</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card text-center h-100">
+        <img src="/images/pest control.jpg" class="card-img-top" alt="pest control">
+        <div class="card-body">
+          <h5 class="card-title">Pest Control</h5>
+          <p class="card-text">Clear your home of unwanted pests.</p>
+            <a href="#" class="btn btn-warning">BOOK NOW</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card text-center h-100">
+        <img src="/images/sofa cleaning.jpg" class="card-img-top" alt="sofa cleaning">
+        <div class="card-body">
+          <h5 class="card-title">Sofa Cleaning</h5>
+          <p class="card-text">We provide you with the best experts for your furniture.</p>
+          <a href="#" class="btn btn-warning">BOOK NOW</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card text-center h-100">
+        <img src="/images/mattress cleaning.jpg" class="card-img-top" alt="mattress cleaning">
+        <div class="card-body">
+          <h5 class="card-title">Mattress Cleaning</h5>
+          <p class="card-text">We can clean your mattress too.</p>
+          <a href="#" class="btn btn-warning">BOOK NOW</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card text-center h-100">
+        <img src="/images/car wash.jpg" class="card-img-top" alt="car wash">
+        <div class="card-body">
+          <h5 class="card-title">Car Wash</h5>
+          <p class="card-text">Get your car washed whenever you want.</p>
+          <a href="#" class="btn btn-warning">BOOK NOW</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card text-center h-100">
+        <img src="/images/ac cleaning.jpg" class="card-img-top" alt="ac cleaning">
+        <div class="card-body">
+          <h5 class="card-title">AC Cleaning</h5>
+          <p class="card-text">We provide your home with the clean air it deserves.</p>
+          <a href="#" class="btn btn-warning">BOOK NOW</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card text-center h-100">
+        <img src="/images/laundry.jpg" class="card-img-top" alt="laundry">
+        <div class="card-body">
+          <h5 class="card-title">Laundry and Dry Cleaning</h5>
+          <p class="card-text">Get your laundry picked up and delivered to you at your convenience.</p>
+          <a href="#" class="btn btn-warning">BOOK NOW</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-6 col-md-3">
+      <div class="card text-center h-100">
+        <img src="/images/handyman.jpg" class="card-img-top" alt="handyman">
+        <div class="card-body">
+          <h5 class="card-title">Handyman and Maintenance</h5>
+          <p class="card-text">Get a professional and verified handyman service.</p>
+          <a href="#" class="btn btn-warning">BOOK NOW</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<!--EXTRA INFORMATION-->
+<div class="container">
+  <div class="card my-4 text-dark bg-warning">
+    <div class="card-header">
+      COVID-19 PROTECTION
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">Preventive measures against COVID-19</h5>
+      <p class="card-text">All our professionals are checked for body temperature on a daily basis, and equipped with gloves, masks, and sanitizers. All Justmop vans, accommodations, and tools are sanitized every day to maintain the hygienic conditions.</p>
+    </div>
+  </div>
+  
+  <div class="card text-dark bg-warning">
+    <div class="card-header">
+      TIP IT FORWARD
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">A little tip can go a long way</h5>
+      <p class="card-text">We will always be committed to taking care of our hardworking professionals in any way we can. If you want to be part of this initiative, you can participate by tipping it forward for our cleaning team members.</p>
+    </div>
+  </div>  
+</div>
 
-
-
-
+<!--FOOTER-->
 <%- include("partials/footer.ejs") %>
