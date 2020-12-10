@@ -18,7 +18,10 @@ const express       =       require("express"),
         res.render("home");
     });
     
-
+    //Home route
+    app.get("/frequency", (req,res)=>{
+        res.render("frequency");
+    });
 
 
 //PORT LISTENER
