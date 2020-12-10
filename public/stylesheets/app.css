@@ -3,8 +3,17 @@ html {
     min-height: 100%;
   }
   body {
-    /* Margin bottom by footer height */
+    /* Margin bottom by footer height*/ 
     margin-bottom: 60px;
+  }
+  label{
+    margin-bottom: 5px;
+  }
+  .card{
+    margin-top: 40px;
+    max-width: 550px;
+    margin-left: auto;
+    margin-right: auto;
   }
   .footer {
     margin-top: 12px;
