@@ -6,9 +6,6 @@ html {
     /* Margin bottom by footer height*/ 
     margin-bottom: 60px;
   }
-  label{
-    margin-bottom: 5px;
-  }
   .card{
     margin-top: 40px;
     max-width: 550px;

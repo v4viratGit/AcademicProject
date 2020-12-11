@@ -1,0 +1,113 @@
+<!--HEADER-->
+<%- include("partials/header.ejs") %>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head></head>
+    <body>
+        <div class="container">
+            <div class="card border border-warning border-2 my-4">
+                <div class="card-header text-dark bg-warning">
+                    Order Here
+                </div>
+                <div class="card-body">
+                    <form>
+                        <!-- SELECT SCHEDULE OF WORK -->
+                        <div class="mb-3">
+                            <label class="form-label">Select Frequency</label>
+                            <select class="form-select border border-warning" aria-label="Select Frequency">
+                                <option value="One time">One-time</option>
+                                <option value="Bi weekly">Bi-Weekly</option>
+                                <option value="weekly">Weekly</option>
+                            </select>
+                        </div>
+                        <!-- TO SELECT TIME PERIOD OF WORK -->
+                        <div class="mb-3">
+                            <label class="form-label">Select hours of work</label>
+                            <select class="form-select border border-warning" aria-label="hours of work">
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                            </select>
+                        </div>
+                        <!-- TO SELECT NUMBER OF SERVENTS FOR WORK -->
+                        <div class="mb-3">
+                            <label class="form-label">Professionals Required</label>
+                            <select class="form-select border border-warning" aria-label="Profrssionals Required">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>  
+                        <!-- FOR CHECKING AVAILABILITY OF MATERIAL -->
+                        <div class="mb-3 border-warning border-bottom">
+                            <label class="form-label">Do you need cleaning material ?</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  No, I have
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                <label class="form-check-label" for="flexRadioDefault2">
+                                  Yes please
+                                </label>
+                            </div>
+                        </div>
+                        <!-- TO CHOOSE PROFESSIONALS -->
+                        <div class="mb-3 border-warning border-bottom">
+                            <label class="form-label">Choose Profrssional</label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                  abc
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                  ddd
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                  fff
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                  ggg
+                                </label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
+                                <label class="form-check-label" for="defaultCheck1">
+                                  jjj
+                                </label>
+                            </div>
+                        </div>
+                        <!-- TO CHOOSE DATE AND TIME TO START WORK -->
+                        <div class="mb-3">
+                            <label class="form-label">Select date-time to start work</label><br>
+                            <input type="datetime-local" name="datetime" class="form-control border border-warning">
+                        </div> 
+                        <div class="mb-3">
+                            <label for="mobile" class="form-label">Enter Mobile Number</label>
+                            <input type="tel" class="form-control border border-warning">
+                        </div>     
+                        <button type="submit" class="btn btn-warning">Submit</button>
+                    </form>
+                </div>
+              </div>
+        </div>
+    </body>
+</html>
