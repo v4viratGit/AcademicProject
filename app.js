@@ -13,12 +13,12 @@ const express       =       require("express"),
 
 
 //ROUTES
-    //Home route
+    //HOME ROUTE
       app.get("/", (req,res)=>{
         res.render("home");
     });
     
-    //Home route
+    //ORDER MAID ROUTE
     app.get("/order", (req,res)=>{
         res.render("order-form");
     });
