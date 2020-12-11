@@ -19,8 +19,8 @@ const express       =       require("express"),
     });
     
     //Home route
-    app.get("/frequency", (req,res)=>{
-        res.render("frequency");
+    app.get("/order", (req,res)=>{
+        res.render("order-form");
     });
 
 
