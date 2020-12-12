@@ -1,10 +1,11 @@
 <!--HEADER-->
 <%- include("partials/header.ejs") %>
 
+    <!-- FORM TO ORDER PROFESSIONALS -->
         <div class="container">
-            <div class="card border border-warning border-2 my-4">
+            <div class="card border border-warning border-2 my-4 cardcss">
                 <div class="card-header text-dark bg-warning">
-                    Order Here
+                <h5>Order Here</h5>    
                 </div>
                 <div class="card-body">
                     <form>
@@ -45,13 +46,13 @@
                         <div class="mb-3 border-warning border-bottom">
                             <label class="form-label">Do you need cleaning material ?</label><br>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                                <input class="form-check-input" type="radio" name="instruments" id="flexRadioDefault1" checked>
                                 <label class="form-check-label" for="flexRadioDefault1">
                                   No, I have
                                 </label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                                <input class="form-check-input" type="radio" name="instruments" id="flexRadioDefault2">
                                 <label class="form-check-label" for="flexRadioDefault2">
                                   Yes please
                                 </label>
@@ -94,18 +95,22 @@
                         <!-- TO CHOOSE DATE AND TIME TO START WORK -->
                         <div class="mb-3">
                             <label class="form-label">Select date-time to start work</label><br>
-                            <input type="datetime-local" name="datetime" class="form-control border border-warning">
+                            <input type="datetime-local" name="datetime" class="form-control border border-warning" required>
+                        </div> 
+                        <!-- TO ACCEPT ADDRESS -->
+                        <div class="mb-3">
+                            <label for="address" class="form-label">Enter Your Address</label>
+                            <input type="text" class="form-control border border-warning" required>
                         </div> 
                         <div class="mb-3">
                             <label for="mobile" class="form-label">Enter Mobile Number</label>
-                            <input type="tel" class="form-control border border-warning">
+                            <input type="tel" class="form-control border border-warning" required>
                         </div>     
                         <button type="submit" class="btn btn-warning">Submit</button>
                     </form>
                 </div>
               </div>
         </div>
-
 
 <!--FOOTER-->
 <%- include("partials/footer.ejs") %>
