@@ -38,6 +38,11 @@ const express       =       require("express"),
         res.render("user-account");
     });
 
+    //ADDING NEW STAFF ROUTE
+    app.get("/newStaff", (req,res)=>{
+        res.render("New-staff");
+    });
+
 
 //PORT LISTENER
 app.listen(3000, ()=>{
