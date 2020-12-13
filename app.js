@@ -23,6 +23,11 @@ const express       =       require("express"),
         res.render("order-form");
     });
 
+    //ADD NEW STAFF ROUTE
+    app.get("/addNew", (req,res)=>{
+        res.render("New-staff");
+    });
+
 
 //PORT LISTENER
 app.listen(3000, ()=>{
