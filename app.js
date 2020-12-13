@@ -23,6 +23,20 @@ const express       =       require("express"),
         res.render("order-form");
     });
 
+    //LOGIN FORM ROUTE
+    app.get("/login", (req,res)=>{
+        res.render("login-form");
+    });
+
+    //SIGN UP FORM ROUTE
+    app.get("/signup", (req,res)=>{
+        res.render("signup-form");
+    });
+
+    //USER ACCOUNT DETAILS ROUTE
+    app.get("/user", (req,res)=>{
+        res.render("user-account");
+    });
 
 //PORT LISTENER
 app.listen(3000, ()=>{
