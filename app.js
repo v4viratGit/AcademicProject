@@ -43,6 +43,11 @@ const express       =       require("express"),
         res.render("New-staff");
     });
 
+    //ADMIN PAGE ROUTE
+    app.get("/admin", (req,res)=>{
+        res.render("admin");
+    });
+
 
 //PORT LISTENER
 app.listen(3000, ()=>{
