@@ -1,0 +1,55 @@
+<!--HEADER-->
+<%- include("partials/header.ejs") %>
+
+    <!-- FORM TO ORDER PROFESSIONALS -->
+    <div class="container">
+        <div class="card border border-warning border-2 my-4 cardcss">
+            <div class="card-header text-dark bg-warning">
+            <h5>New Staff</h5>    
+            </div>
+            <div class="card-body">
+                <form>
+                    <!-- TO ACCEPT NAME -->
+                    <div class="mb-3">
+                        <input type="text" name="name" class="form-control border border-warning" placeholder="Enter Full Name" required>
+                    </div>
+                    <!-- SELECT GENDER -->
+                    <div class="mb-3">
+                        <select name="gender" class="form-select border border-warning" aria-label="Select Gender">
+                            <option value="not chosen">Select gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <!-- CHOOSE PHOTO -->
+                    <div class="mb-3">
+                        <div class="input-group mb-3">
+                            <input type="file" class="form-control border border-warning" id="photo">
+                            <label class="input-group-text" for="photo">Upload Photo</label>
+                        </div> 
+                    </div>
+                    <!-- TO ACCEPT ADDRESS -->
+                    <div class="mb-3">
+                        <input type="text" name="address" class="form-control border border-warning" placeholder="Enter Address" required>
+                    </div> 
+                    <!-- TO ACCEPT MOBILE NUMBER -->
+                    <div class="mb-3">
+                        <input type="tel" name="mobile" class="form-control border border-warning" placeholder="Enter Mobile Number" required>
+                    </div>     
+                    <!-- TO ACCEPT SKILLS -->
+                    <div class="mb-3">
+                        <input type="text" name="skills" class="form-control border border-warning" placeholder="Enter Skills" required>
+                    </div>
+                    <!-- TO ACCEPT DESCRIPTION -->
+                    <div class="mb-3">
+                        <textarea name="description" class="form-control border border-warning" aria-label="description" placeholder="Enter Description of work"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-warning">Save</button>
+                </form>
+            </div>
+          </div>
+    </div>
+
+<!--FOOTER-->
+<%- include("partials/footer.ejs") %>
