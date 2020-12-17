@@ -2,7 +2,9 @@
 
     //EXPRESS
 const express       =       require("express"),
-      app           =       express();
+      app           =       express(),
+      bodyParser    =       require("body-parser");
+      app.use(bodyParser.urlencoded({extended: true}));
       app.use(express.urlencoded({extended:true}));
 
     //EJS
@@ -35,6 +37,7 @@ const express       =       require("express"),
     passport      = require("passport"),
     passportLocal = require("passport-local"),
     passportLocalMongoose = require("passport-local-mongoose");
+    Order = require("./models/order");
     app.use(passport.initialize());
     app.use(passport.session());
     passport.use(new passportLocal(User.authenticate()));
@@ -98,6 +101,30 @@ const express       =       require("express"),
         res.render("order-form");
     });
 
+    //STORE ORDER POST ROUTE
+    app.post("/orders", (req,res)=>{
+        var orderData = new Order(req.body);
+        orderData.save()
+        .then(orderItem => {
+            console.log("Order saved to Database");
+            res.redirect("/");
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    });    
+
+    //SHOW ORDERS ROUTE
+    app.get("/showOrders", (req,res)=>{
+        Order.find({}, function(err, allOrders){
+            if(err){
+                console.log(err);
+            } else {
+                res.render("admin", {allorders: allOrders});
+            }
+        });
+    });
+
     //LOGIN FORM ROUTE
     app.get("/login", (req,res)=>{
         res.render("login-form");
@@ -120,7 +147,7 @@ const express       =       require("express"),
 
     //ADMIN PAGE ROUTE
     app.get("/admin", (req,res)=>{
-        res.render("admin");
+        res.render("admin", {allorders: null});
     });
 
 
