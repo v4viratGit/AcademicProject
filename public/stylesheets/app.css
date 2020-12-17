@@ -8,6 +8,20 @@ body {
   margin-bottom: 60px;
 }
 
+/* Responsive table */
+table{
+  overflow: hidden;
+}
+td{
+  overflow: hidden;
+}
+
+/* Fixing logo size*/
+.logo{
+  max-width: 80px;
+  max-height: 70px;
+}
+
 .footer {
   margin-top: 12px;
   border-top:1px solid black;
