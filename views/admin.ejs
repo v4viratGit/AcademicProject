@@ -14,7 +14,9 @@
   <!--Navigation Bar-->
   <nav class="navbar navbar-expand-lg navbar-light bg-light border-warning border-bottom">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">RPServices</a>
+      <a class="navbar-brand" href="#">
+        <img src="images/logo.jpg" alt="RPServices" class="logo">
+      </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -22,6 +24,9 @@
         <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item">
             <a class="nav-link" href="#">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/showOrders">Orders</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="newStaff">Add New</a>
@@ -35,24 +40,32 @@
   </nav>
 <!-- TABLE TO SHOW ALL ORDERS -->
 <div class="container">
+  <div class="table-responsive">
+  <% if(allorders!=null){ %>
   <table class="table" style="margin-top: 20px;">
     <thead>
       <tr class="table-light">
         <th>Customer Name</th>
+        <th>Date Time</th>
         <th>Address</th>
         <th>Mobile Number</th>
         <th>Staff Name</th>
       </tr>
     </thead>
     <tbody>
+      <% allorders.forEach(function(item){ %>
       <tr>
-        <td class="table-light">abcabcabcabcabcabcabc</td>
-        <td class="table-light">xyzabcabcabcabcabcabcabc</td>
-        <td class="table-light">123abcabcabcabcabcabc</td>
-        <td class="table-light">pqrabcabcabcabcabcabcabc</td>
+        <td class="table-light"><%= item.name %></td>
+        <td class="table-light"><%= item.datetime %></td>
+        <td class="table-light"><%= item.address %></td>
+        <td class="table-light"><%= item.mobile %></td>
+        <td class="table-light"><%= item.staff %></td>
       </tr>
+      <% }) %>
     </tbody>
   </table>
+  <% } %>
+  </div>
 </div>
   <!--FOOTER-->
 <%- include("partials/footer.ejs") %>
