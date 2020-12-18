@@ -8,7 +8,7 @@
             <h5>New Staff</h5>    
             </div>
             <div class="card-body">
-                <form>
+                <form action="/admin/newStaff" method="POST">
                     <!-- TO ACCEPT NAME -->
                     <div class="mb-3">
                         <input type="text" name="name" class="form-control border border-warning" placeholder="Enter Full Name" required>
@@ -16,19 +16,19 @@
                     <!-- SELECT GENDER -->
                     <div class="mb-3">
                         <select name="gender" class="form-select border border-warning" aria-label="Select Gender">
-                            <option value="not chosen">Select gender</option>
+                            <option value="Not chosen">Select gender</option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             <option value="Other">Other</option>
                         </select>
                     </div>
-                    <!-- CHOOSE PHOTO -->
+                    <!-- CHOOSE PHOTO 
                     <div class="mb-3">
                         <div class="input-group mb-3">
-                            <input type="file" class="form-control border border-warning" id="photo">
+                            <input type="file" name="file" class="form-control border border-warning" id="photo">
                             <label class="input-group-text" for="photo">Upload Photo</label>
                         </div> 
-                    </div>
+                    </div>-->
                     <!-- TO ACCEPT ADDRESS -->
                     <div class="mb-3">
                         <input type="text" name="address" class="form-control border border-warning" placeholder="Enter Address" required>
