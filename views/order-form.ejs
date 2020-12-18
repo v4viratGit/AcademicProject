@@ -61,36 +61,16 @@
                         <!-- TO CHOOSE PROFESSIONALS -->
                         <div class="mb-3 border-warning border-bottom">
                             <label class="form-label">Choose Professional</label><br>
+                            <% if(allstaff!=null){ %>
+                            <% allstaff.forEach(function(each){ %>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="staff[]" value="abc" id="defaultCheck1">
+                                <input class="form-check-input" type="checkbox" name="staff[]" value="<%= each.name %>" id="defaultCheck1">
                                 <label class="form-check-label" for="defaultCheck1">
-                                  abc
+                                    <%= each.name %>
                                 </label>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="staff[]" value="ddd" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                  ddd
-                                </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="staff[]" value="fff" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                  fff
-                                </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="staff[]" value="ggg" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                  ggg
-                                </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="staff[]" value="jjj" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                  jjj
-                                </label>
-                            </div>
+                            <% }) %>
+                            <% } %>
                         </div>
                         <!-- TO CHOOSE DATE AND TIME TO START WORK -->
                         <div class="mb-3">
