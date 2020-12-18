@@ -18,7 +18,12 @@ const express       =       require("express"),
     const mongoose = require('mongoose');
     mongoose.connect('mongodb://localhost:27017/RPServices', {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify:false});
     mongoose.set('useCreateIndex', true);
-    const User=require("./models/user");
+    
+
+    //All MODEL ROUTES
+    const User  = require("./models/user"),
+          Order = require("./models/order"),
+          Staff = require("./models/staff");
 
     //METHOD-OVERRIDE
     const methodOverride = require('method-override');
@@ -37,7 +42,6 @@ const express       =       require("express"),
     passport      = require("passport"),
     passportLocal = require("passport-local"),
     passportLocalMongoose = require("passport-local-mongoose");
-    Order = require("./models/order");
     app.use(passport.initialize());
     app.use(passport.session());
     passport.use(new passportLocal(User.authenticate()));
@@ -53,7 +57,7 @@ const express       =       require("express"),
 //ROUTES
     //HOME ROUTE
     app.get("/", (req,res)=>{
-        res.render("home");
+        res.render("home", {allstaff: null});
     });
 
     //----------------------//
@@ -95,10 +99,28 @@ const express       =       require("express"),
         res.redirect("/");
     });
 
+    //ADMIN LOGIN
+    //ADMIN LOGIN FORM GET ROUTE
+    app.get("/admin/login", (req,res)=>{
+        res.render("admin-login");
+    });
+    //LOGIN FORM HANDLER POST ROUTE
+    app.post("/admin/login", passport.authenticate('local', { failureRedirect: '/login',
+    failureFlash: true }),(req,res)=>{
+        res.redirect("/admin");
+    });
+
 
     //ORDER MAID ROUTE
     app.get("/order", middleware.isLoggedIn, (req,res)=>{
-        res.render("order-form");
+        Staff.find({}, function(err, allStaff){
+            if(err){
+                console.log(err);
+            } else {
+                res.render("order-form", {allstaff: allStaff});
+            }
+        });
+        //res.render("order-form");
     });
 
     //STORE ORDER POST ROUTE
@@ -140,13 +162,37 @@ const express       =       require("express"),
         res.render("user-account");
     });
 
-    //ADDING NEW STAFF ROUTE
-    app.get("/newStaff", (req,res)=>{
+    //ADDING NEW STAFF GET ROUTE
+    app.get("/admin/newStaff", (req,res)=>{
         res.render("New-staff");
     });
 
+    //ADDING NEW STAFF POST ROUTE
+    app.post("/admin/newStaff", (req,res)=>{
+        var staffData = new Staff(req.body);
+        staffData.save()
+        .then(data => {
+            console.log("New Staff Added Successfully");
+            res.redirect("/admin");
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }); 
+    
+    //ROUTE TO SHOW ALL STAFF
+    app.get("/staff", (req,res)=>{
+        Staff.find({}, function(err, allStaff){
+            if(err){
+                console.log(err);
+            } else {
+                res.render("show-staff", {allstaff: allStaff});
+            }
+        });
+    });
+
     //ADMIN PAGE ROUTE
-    app.get("/admin", (req,res)=>{
+    app.get("/admin", middleware.isLoggedIn, (req,res)=>{
         res.render("admin", {allorders: null});
     });
 
