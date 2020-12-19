@@ -1,0 +1,28 @@
+<!--HEADER-->
+<%- include("partials/header.ejs") %>
+
+<!--CONTENT-->
+<div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 d-none d-lg-block">
+        <img class="img-fluid" src="/images/Login page img.jpg" alt="Login page img">
+      </div>
+      <div class="col-md-6 border border-warning">
+        <form action="/user/<%=foundUser._id%>?_method=PUT" method="POST" class="text-center">
+            <h1>Update Profile</h1>
+            <input class="form-control my-3" type="text" name="name" placeholder="<%= foundUser.name %> ">
+            <input class="form-control my-3" type="text" name="username" placeholder="<%= foundUser.username %> ">
+            <input class="form-control my-3" type="email" name="email" placeholder="<%= foundUser.email %> ">
+            <input class="form-control my-3" type="number" name="phone" placeholder="<%= foundUser.phone %> ">
+            <input class="form-control my-3" type="text" name="address" placeholder="<%= foundUser.address %> ">
+            <div class="d-grid gap-2 col-6 mx-auto my-3">
+                <button type="submit" class="btn btn-block btn-warning">Update</button>
+            </div> 
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+<!--FOOTER-->
+<%- include("partials/footer.ejs") %>

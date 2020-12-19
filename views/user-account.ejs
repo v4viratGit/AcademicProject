@@ -9,21 +9,25 @@
             <div class="text-center card" style="width: 18rem;">
                 <img src="/images/user profile picture.jpg" class="card-img-top" alt="user profile picture">
                 <div class="card-body">
-                    <p class="card-text">John Smith</p>
+                    <p class="card-text"><%= foundUser.name %> </p>
                 </div>
             </div>
         </div>
         
         <!--USER INFORMATION-->
         <div class="border border-warning my-3 text-center">
-            <h5>Name</h5>
-            <p>John Smith</p>
+            <h5>Username</h5>
+            <p><%= foundUser.username %></p>
             <h5>Email</h5>
-            <p>johnsmith89@gmail.com</p>
+            <p><%= foundUser.email %></p>
             <h5>Phone</h5>
-            <p>5634897525</p>
+            <p><%= foundUser.phone %></p>
             <h5>Address</h5>
-            <p>Apartment 89, 46th Street, New york city, New york, USA.</p>
+            <p><%= foundUser.address %></p>
+            <a href="/user/<%= foundUser._id%>/edit" class="my-2 btn btn-block btn-warning">Edit Profile</a>
+            <form action="/user/<%= foundUser._id%>?_method=DELETE" method="POST">
+                <button class="my-2 btn btn-block btn-danger">Delete</button>
+            </form>
         </div>
     </div>
 </div>
