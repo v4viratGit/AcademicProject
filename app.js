@@ -175,7 +175,7 @@ const express       =       require("express"),
     //--------------------------------------------//
 
     //----------------------------//
-    const adminID="5fddfb41e8e4af22f064ede8";
+    const adminID="5fdc7428d5d98f0f3c225947";
     //ADMIN ROUTES
     //ADMIN DASHBOARD
     //ROUTE TO SHOW ALL ORDERS TO THE ADMIN
@@ -342,11 +342,22 @@ const express       =       require("express"),
                   newOrder.save();             
                   foundUser.orders.push(newOrder);
                   foundUser.save();
-                  res.redirect("/user/"+foundUser._id);      
+                  res.redirect("/user/"+foundUser._id+"/payment");      
                 } 
             });
       }});
-    });    
+    }); 
+    
+    //PAYMENT PAGE GET ROUTE
+    app.get("/user/:id/payment",(req,res)=>{
+      User.findById(req.params.id).populate('orders').exec((err,foundUser)=>{
+        if (err) {
+          console.log(err);
+        } else {
+          res.render("payments", {foundUser});
+        }
+      });
+    });
 
     //SHOW USER'S ORDERS
     app.get("/user/:id/order", (req,res)=>{
