@@ -8,45 +8,33 @@
             <h5>New Staff</h5>    
             </div>
             <div class="card-body">
-                <form action="/admin/newStaff" method="POST">
+                <form action="/admin/staff" method="POST">
                     <!-- TO ACCEPT NAME -->
                     <div class="mb-3">
                         <input type="text" name="name" class="form-control border border-warning" placeholder="Enter Full Name" required>
                     </div>
                     <!-- SELECT GENDER -->
                     <div class="mb-3">
-                        <select name="gender" class="form-select border border-warning" aria-label="Select Gender">
-                            <option value="Not chosen">Select gender</option>
+                        <select name="gender" class="form-select border border-warning" aria-label="Select Gender">option>
                             <option value="Male">Male</option>
                             <option value="Female">Female</option>
                             <option value="Other">Other</option>
                         </select>
                     </div>
-                    <!-- CHOOSE PHOTO 
-                    <div class="mb-3">
-                        <div class="input-group mb-3">
-                            <input type="file" name="file" class="form-control border border-warning" id="photo">
-                            <label class="input-group-text" for="photo">Upload Photo</label>
-                        </div> 
-                    </div>-->
                     <!-- TO ACCEPT ADDRESS -->
                     <div class="mb-3">
                         <input type="text" name="address" class="form-control border border-warning" placeholder="Enter Address" required>
                     </div> 
                     <!-- TO ACCEPT MOBILE NUMBER -->
                     <div class="mb-3">
-                        <input type="tel" name="mobile" class="form-control border border-warning" placeholder="Enter Mobile Number" required>
+                        <input type="tel" name="phone" class="form-control border border-warning" placeholder="Enter Mobile Number" required>
                     </div>     
                     <!-- TO ACCEPT SKILLS -->
                     <div class="mb-3">
                         <input type="text" name="skills" class="form-control border border-warning" placeholder="Enter Skills" required>
                     </div>
-                    <!-- TO ACCEPT DESCRIPTION -->
-                    <div class="mb-3">
-                        <textarea name="description" class="form-control border border-warning" aria-label="description" placeholder="Enter Description of work"></textarea>
-                    </div>
                     <div class="d-grid gap-2 col-6 mx-auto my-3">
-                        <button type="submit" class="btn btn-block btn-warning">Add New</button>
+                        <button type="submit" class="btn btn-block btn-warning">Submit</button>
                     </div>
                 </form>
             </div>

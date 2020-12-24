@@ -2,30 +2,36 @@
 <!-- TABLE TO SHOW ALL ORDERS -->
 <div class="container">
   <div class="table-responsive">
-  <% if(allorders!=null){ %>
   <table class="table" style="margin-top: 20px;">
     <thead>
       <tr class="table-light">
         <th>Customer Name</th>
+        <th>Job Category</th>
+        <th>Job Type</th>
+        <th>No of Professionals</th>
+        <th>Material</th>
+        <th>Staff Name</th>
         <th>Date Time</th>
         <th>Address</th>
         <th>Mobile Number</th>
-        <th>Staff Name</th>
       </tr>
     </thead>
-    <tbody>
-      <% allorders.forEach(function(item){ %>
+    <tbody> 
+      <% for (let item of allOrders) { %> 
       <tr>
         <td class="table-light"><%= item.name %></td>
+        <td class="table-light"><%= item.jobCategory %></td>
+        <td class="table-light"><%= item.jobType %></td>
+        <td class="table-light"><%= item.professionals %></td>
+        <td class="table-light"><%= item.material %></td>
+        <td class="table-light"><%= item.staff %></td>
         <td class="table-light"><%= item.datetime %></td>
         <td class="table-light"><%= item.address %></td>
         <td class="table-light"><%= item.mobile %></td>
-        <td class="table-light"><%= item.staff %></td>
       </tr>
-      <% }) %>
+      <% }%>
     </tbody>
   </table>
-  <% } %>
   </div>
 </div>
   <!--FOOTER-->

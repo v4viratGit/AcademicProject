@@ -70,7 +70,6 @@ const express       =       require("express"),
 
     //----------------------//
     //CRUD FOR USER
-
     //CREATE NEW USER
     //USER SIGNUP FORM GET ROUTE
     app.get("/user/new", (req,res)=>{
@@ -166,14 +165,22 @@ const express       =       require("express"),
         );
       });
 
+      
+
+
+
+
+
+
     //--------------------------------------------//
 
     //----------------------------//
+    const adminID="5fddfb41e8e4af22f064ede8";
     //ADMIN ROUTES
     //ADMIN DASHBOARD
     //ROUTE TO SHOW ALL ORDERS TO THE ADMIN
     app.get("/admin/orders", (req,res,next)=>{
-        if(req.isAuthenticated()&&req.user._id=="5fddfb41e8e4af22f064ede8"){
+        if(req.isAuthenticated()&&req.user._id==adminID){
             return next();
         }    
         res.redirect("/login");
@@ -182,82 +189,177 @@ const express       =       require("express"),
             if(err){
                 console.log(err);
             } else {
-                res.render("admin", {allorders: allOrders});
+                res.render("show-orders", {allOrders});
             }
         });
     });
 
+    //STAFF CRUD
+    //CREATE NEW STAFF GET ROUTE
+    app.get("/admin/staff/new", (req,res,next)=>{
+        if(req.isAuthenticated()&&req.user._id==adminID){
+            return next();
+        }    
+        res.redirect("/login");
+        }, 
+        (req,res)=>{
+        res.render("new-staff");
+    });
 
-    //ORDER ROUTE
-    app.get("/order", middleware.isLoggedIn, (req,res)=>{
+    //CREATE NEW STAFF POST ROUTE
+    app.post("/admin/staff", (req,res,next)=>{
+        if(req.isAuthenticated()&&req.user._id==adminID){
+            return next();
+        }    
+        res.redirect("/login");
+        },
+        (req,res)=>{
+        const newStaff=req.body;
+        Staff.create(newStaff, (err, newStaff)=>{
+        if (err) {
+          console.log(err);
+        } else {
+          res.redirect("/");
+        }
+        }
+        ); 
+      });
+
+      //READ AND SHOW STAFF
+      //LIST OF ALL STAFF MEMBERS
+      app.get("/admin/staff/show",(req,res,next)=>{
+        if(req.isAuthenticated()&&req.user._id==adminID){
+            return next();
+        }    
+        res.redirect("/login");
+        }, 
+        (req,res)=>{
         Staff.find({}, function(err, allStaff){
             if(err){
                 console.log(err);
             } else {
-                res.render("order-form", {allstaff: allStaff});
+                res.render("staff-list", {allStaff});
             }
         });
-        //res.render("order-form");
+    });
+    //SHOW INFORMATION OF AN INDIVIDUAL STAFF MEMBER
+    app.get("/admin/staff/:id", (req,res,next)=>{
+        if(req.isAuthenticated()&&req.user._id==adminID){
+            return next();
+        }    
+        res.redirect("/login");
+        },
+        (req,res)=>{
+        Staff.findById(req.params.id,(err, foundStaff)=>{
+          if (err) {
+            console.log(err);
+          } else {
+            res.render("show-staff", {foundStaff});
+          }
+        });
+      });
+
+      //UPDATE - EDIT AND UPDATE STAFF
+      //EDIT STAFF GET ROUTE
+      app.get("/admin/staff/:id/edit", (req,res,next)=>{
+        if(req.isAuthenticated()&&req.user._id==adminID){
+            return next();
+        }    
+        res.redirect("/login");
+        },
+        (req,res)=>{
+        Staff.findById(req.params.id, (err,foundStaff)=>{
+          if (err) {
+            console.log(err);
+          } else {
+            res.render("edit-staff", {foundStaff});
+          }
+        });
+      });
+  //UPDATE STAFF PUT ROUTE
+      app.put("/admin/staff/:id",(req,res,next)=>{
+        if(req.isAuthenticated()&&req.user._id==adminID){
+            return next();
+        }    
+        res.redirect("/login");
+        },
+        (req,res)=>{
+        const editedStaff=req.body;
+        Staff.findByIdAndUpdate(req.params.id, editedStaff, (err, updatedStaff)=>{
+            if (err) {
+              console.log(err);
+            } else {
+              res.redirect("/");
+            }
+          });
+      });
+
+  //DESTROY STAFF
+  app.delete("/admin/staff/:id", (req,res,next)=>{
+    if(req.isAuthenticated()&&req.user._id==adminID){
+        return next();
+    }    
+    res.redirect("/login");
+    },
+    (req,res)=>{
+    Staff.findByIdAndDelete(req.params.id,(err)=>{
+      if (err) {
+        console.log(err);
+      } else {
+        res.redirect("/")
+      }
+    }
+    );
+  });
+
+  //----------------------------------------------------------//
+
+  //----------------------------------------------------------//
+    //ORDER ROUTES
+    //PLACE ORDER GET ROUTE
+    app.get("/user/:id/order/new",(req,res)=>{
+        Staff.find({}, function(err, allstaff){
+            if(err){
+                console.log(err);
+            } else {
+                res.render("order-form", {allstaff});
+            }
+        });
     });
 
     //STORE ORDER POST ROUTE
-    app.post("/orders", (req,res)=>{
-        var orderData = new Order(req.body);
-        orderData.save()
-        .then(orderItem => {
-            console.log("Order saved to Database");
-            res.redirect("/");
-        })
-        .catch(err => {
+    app.post("/user/:id/order", (req,res)=>{
+      const id=req.params.id;
+      User.findById(id,(err,foundUser)=>{
+        if (err) {
+          console.log(err);
+        } else {
+          const newOrder= req.body;
+          Order.create(newOrder, (err, newOrder)=>{
+            if (err) {
             console.log(err);
-        });
+            } else {   
+                  newOrder.save();             
+                  foundUser.orders.push(newOrder);
+                  foundUser.save();
+                  res.redirect("/user/"+foundUser._id);      
+                } 
+            });
+      }});
     });    
 
-    //LOGIN FORM ROUTE
-    app.get("/login", (req,res)=>{
-        res.render("login-form");
+    //SHOW USER'S ORDERS
+    app.get("/user/:id/order", (req,res)=>{
+      User.findById(req.params.id).populate('orders').exec((err,foundUser)=>{
+        if (err) {
+          console.log(err);
+        } else {
+          res.render("show-user-orders", {foundUser});
+        }
+      });
     });
 
-    //SIGN UP FORM ROUTE
-    app.get("/signup", (req,res)=>{
-        res.render("signup-form");
-    });
-
-    //USER ACCOUNT DETAILS ROUTE
-    app.get("/user", (req,res)=>{
-        res.render("user-account");
-    });
-
-    //ADDING NEW STAFF GET ROUTE
-    app.get("/admin/newStaff", (req,res)=>{
-        res.render("New-staff");
-    });
-
-    //ADDING NEW STAFF POST ROUTE
-    app.post("/admin/newStaff", (req,res)=>{
-        var staffData = new Staff(req.body);
-        staffData.save()
-        .then(data => {
-            console.log("New Staff Added Successfully");
-            res.redirect("/admin");
-        })
-        .catch(err => {
-            console.log(err);
-        });
-    }); 
-    
-    //ROUTE TO SHOW ALL STAFF
-    app.get("/staff", (req,res)=>{
-        Staff.find({}, function(err, allStaff){
-            if(err){
-                console.log(err);
-            } else {
-                res.render("show-staff", {allstaff: allStaff});
-            }
-        });
-    });
-
- 
+  //--------------------------------------------------------//
 
 
 //PORT LISTENER

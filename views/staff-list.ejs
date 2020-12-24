@@ -1,0 +1,31 @@
+<!--HEADER-->
+<%- include("partials/header.ejs") %>
+
+<!--STAFF CARDS-->
+  <div class="container">
+      <div class="row text-center justify-content-center align-items-center">
+            <h3>Staff-Members of RPServices</h3>
+      </div>
+    <div class="card-group">
+      <div class="row g-2">
+        <% if(allStaff!=null){ %>
+        <% for (let staff of allStaff) {%>
+        <div class="col-6 col-md-3">
+            <div class="card text-center h-100 bg-warning">
+                <img src="/images/user profile picture.jpg" class="card-img-top" alt="Staff">
+                <div class="card-body">
+                <h5 class="card-title bg-warning"><%= staff.name %></h5>
+                <a href="/admin/staff/<%= staff._id %>" class="btn btn-warning">View</a>
+            </div>
+        </div>
+        </div>
+        <% }%>
+        <% } %>    
+      </div>
+    </div>
+  </div>
+
+
+
+<!--FOOTER-->
+<%- include("partials/footer.ejs") %>

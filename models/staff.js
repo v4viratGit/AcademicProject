@@ -7,9 +7,8 @@ const staffSchema = new mongoose.Schema({
     name: String,
     gender: String,
     address: String,
-    mobile: Number,
+    phone: Number,
     skills: String,
-    description: String
 });
 
 //MONGODB MODEL Order FOR orderSchema

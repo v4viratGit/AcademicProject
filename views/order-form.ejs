@@ -8,18 +8,20 @@
                 <h5>Order Here</h5>    
                 </div>
                 <div class="card-body">
-                    <form action="/orders" method="POST">
+                    <form action="/user/<%= currentUser._id %>/order" method="POST">
                         <!-- TO ACCEPT NAME -->
                         <div class="mb-3">
                             <input type="text" name="name" class="form-control border border-warning" placeholder="Enter Full Name" required>
                         </div>                        
                         <!-- SELECT SCHEDULE OF WORK -->
                         <div class="mb-3">
-                            <select name="frequency" class="form-select border border-warning" aria-label="Select Frequency">
-                                <option value="Not selected">Select Frequency</option>
-                                <option value="One time">One-time</option>
-                                <option value="Bi weekly">Bi-Weekly</option>
-                                <option value="weekly">Weekly</option>
+                            <select name="jobCategory" class="form-select border border-warning" aria-label="Select Job Category">
+                                <option value="Deep Cleaning">Deep Cleaning</option>
+                                <option value="Pest Control">Pest Control</option>
+                                <option value="Sofa Cleaning">Sofa Cleaning</option>
+                                <option value="Mattress Cleaning">Mattress Cleaning</option>
+                                <option value="Car Wash">Car Wash</option>
+                                <option value="AC Cleaning">AC Cleaning</option>
                             </select>
                         </div>
                         <!-- TO SELECT TIME PERIOD OF WORK -->
@@ -48,29 +50,28 @@
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="material" value="Not needed" id="flexRadioDefault1" checked>
                                 <label class="form-check-label" for="flexRadioDefault1">
-                                  No, I have
+                                  No, I have!
                                 </label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="material"value="Needed" id="flexRadioDefault2">
                                 <label class="form-check-label" for="flexRadioDefault2">
-                                  Yes please
+                                  Yes, please!
                                 </label>
                             </div>
                         </div>
                         <!-- TO CHOOSE PROFESSIONALS -->
                         <div class="mb-3 border-warning border-bottom">
                             <label class="form-label">Choose Professional</label><br>
-                            <% if(allstaff!=null){ %>
-                            <% allstaff.forEach(function(each){ %>
+                            <% allstaff.forEach(function(staff){ %>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="staff[]" value="<%= each.name %>" id="defaultCheck1">
+                                <input class="form-check-input" type="checkbox" name="staff[]" value="<%= staff.name %>" id="defaultCheck1">
                                 <label class="form-check-label" for="defaultCheck1">
-                                    <%= each.name %>
+                                    <%= staff.name %>
+                                    <%= staff.skills %>
                                 </label>
                             </div>
                             <% }) %>
-                            <% } %>
                         </div>
                         <!-- TO CHOOSE DATE AND TIME TO START WORK -->
                         <div class="mb-3">

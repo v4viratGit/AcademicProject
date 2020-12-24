@@ -40,15 +40,21 @@
                 <a class="nav-link" href="/admin/orders">All Orders</a>
               </li> 
               <li class="nav-item">
-                <a class="nav-link" href="/staff">Staff</a>
+                <a class="nav-link" href="/admin/staff/show">All Staff</a>
+              </li> 
+              <li class="nav-item">
+                <a class="nav-link" href="/admin/staff/new">Add Staff</a>
               </li> 
               <li class="nav-item">
                 <a class="nav-link" href="/user/logout">Logout</a>
               </li> 
             <% } else { %>
               <li class="nav-item">
-                <a class="nav-link" href="/user/<%= currentUser._id %> "><%= currentUser.name %> </a>
+                <a class="nav-link" href="/user/<%= currentUser._id %>"><%= currentUser.name %> </a>
               </li>  
+              <li class="nav-item">
+                <a class="nav-link" href="/user/<%= currentUser._id %>/order">My Orders</a>
+              </li> 
               <li class="nav-item">
                 <a class="nav-link" href="/user/logout">Logout</a>
               </li>  

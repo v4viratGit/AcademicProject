@@ -1,0 +1,38 @@
+<%- include ("partials/header.ejs") %> 
+<!-- TABLE TO SHOW ALL ORDERS -->
+<div class="container">
+  <div class="table-responsive">
+  <table class="table" style="margin-top: 20px;">
+    <thead>
+      <tr class="table-light">
+        <th>Customer Name</th>
+        <th>Job Category</th>
+        <th>Job Type</th>
+        <th>No of Professionals</th>
+        <th>Material</th>
+        <th>Staff Name</th>
+        <th>Date Time</th>
+        <th>Address</th>
+        <th>Mobile Number</th>
+      </tr>
+    </thead>
+    <tbody> 
+      <% for (let order of foundUser.orders) { %> 
+      <tr>
+        <td class="table-light"><%= order.name %></td>
+        <td class="table-light"><%= order.jobCategory %></td>
+        <td class="table-light"><%= order.jobType %></td>
+        <td class="table-light"><%= order.professionals %></td>
+        <td class="table-light"><%= order.material %></td>
+        <td class="table-light"><%= order.staff %></td>
+        <td class="table-light"><%= order.datetime %></td>
+        <td class="table-light"><%= order.address %></td>
+        <td class="table-light"><%= order.mobile %></td>
+      </tr>
+      <% }%>
+    </tbody>
+  </table>
+  </div>
+</div>
+  <!--FOOTER-->
+<%- include("partials/footer.ejs") %>

@@ -5,7 +5,7 @@ const mongoose = require('mongoose');
 //CREATE MongoDB SCHEMA FOR ORDERS COLLECTION
 const orderSchema = new mongoose.Schema({
     name: String,
-    frequency: String,
+    jobCategory: String,
     jobType: String,
     professionals: Number,
     material: String,

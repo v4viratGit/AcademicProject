@@ -1,6 +1,7 @@
 //REQUIRE
 const mongoose = require('mongoose');
 passportLocalMongoose= require("passport-local-mongoose");
+const Order= require("./order");
 
 
 //MongoDB SCHEMA FOR USERS COLLECTION
@@ -9,6 +10,12 @@ const usersSchema = new mongoose.Schema({
     email: String,
     phone: Number,
     address: String,
+    orders:[
+        {
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Order',
+        },
+    ]
 });
 
 //plugIn FOR PASSPORT LOCAL MONGOOSE

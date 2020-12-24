@@ -1,30 +1,36 @@
 <!--HEADER-->
 <%- include("partials/header.ejs") %>
 
-<!--STAFF CARDS-->
-  <div class="container">
-      <div class="row text-center justify-content-center align-items-center">
-            <h3>Staff-Members of RPServices</h3>
-      </div>
-    <div class="card-group">
-      <div class="row g-2">
-        <% if(allstaff!=null){ %>
-        <% allstaff.forEach(function(each){ %>
-        <div class="col-6 col-md-3">
-            <div class="card text-center h-100 bg-warning">
-                <img src="/images/user profile picture.jpg" class="card-img-top" alt="Staff">
+<!--CONTENT-->
+<div class="container mt-5 border border-warning">
+    <div class="p-4">
+        <!--USER PROFILE PICTURE AND NAME-->
+        <div class="d-flex justify-content-center">
+            <div class="text-center card" style="width: 18rem;">
+                <img src="/images/user profile picture.jpg" class="card-img-top" alt="user profile picture">
                 <div class="card-body">
-                <h5 class="card-title bg-warning"><%= each.name %></h5>
-                <p class="card-text"><%= each.skills %></p>
+                    <p class="card-text"><%= foundStaff.name %> </p>
+                </div>
             </div>
         </div>
+        
+        <!--USER INFORMATION-->
+        <div class="border border-warning my-3 text-center">
+            <h5>Skills</h5>
+            <p><%= foundStaff.skills %></p>
+            <h5>Gender</h5>
+            <p><%= foundStaff.gender %></p>
+            <h5>Phone</h5>
+            <p><%= foundStaff.phone %></p>
+            <h5>Address</h5>
+            <p><%= foundStaff.address %></p>
+            <a href="/admin/staff/<%= foundStaff._id%>/edit" class="my-1 btn btn-block btn-warning">Edit Profile</a>
+            <form action="/admin/staff/<%=foundStaff._id%>?_method=DELETE" method="POST">
+                <button class="my-2 btn btn-block btn-danger">Delete</button>
+            </form>
         </div>
-        <% }) %>
-        <% } %>    
-      </div>
     </div>
-  </div>
-
+</div>
 
 
 <!--FOOTER-->
