@@ -15,8 +15,8 @@
         </tr>
       </thead>
       <tbody> 
-        <% for (let order of foundUser.orders) { 
-            if (order.jobCategory == "Deep Cleaning") {
+       <%  for (let order of foundUser.orders) { 
+        if (order.jobCategory == "Deep Cleaning") {
                 var cost=500;
                 var no=0;
                 no=order.professionals;
@@ -100,7 +100,7 @@
                     amount=Math.floor(amt);
                 }
             }
-            %> 
+          %>   
         <tr>
           <td class="table-light"><%= order.name %></td>
           <td class="table-light"><%= order.jobCategory %></td>
@@ -108,7 +108,7 @@
           <td class="table-light"><%= order.professionals %></td>
           <td class="table-light"><%= amount %></td>
         </tr>
-        <% }%>
+        <%  }%>
       </tbody>
     </table>
     </div>
