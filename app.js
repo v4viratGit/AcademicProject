@@ -21,7 +21,8 @@ const express       =       require("express"),
     //All MODEL ROUTES
     const User  = require("./models/user"),
           Order = require("./models/order"),
-          Staff = require("./models/staff");
+          Staff = require("./models/staff"),
+          Price = require("./models/price");
 
     //METHOD-OVERRIDE
     const methodOverride = require('method-override');
@@ -175,7 +176,7 @@ const express       =       require("express"),
     //--------------------------------------------//
 
     //----------------------------//
-    const adminID="5fdc7428d5d98f0f3c225947";
+    const adminID="5fddfb41e8e4af22f064ede8";
     //ADMIN ROUTES
     //ADMIN DASHBOARD
     //ROUTE TO SHOW ALL ORDERS TO THE ADMIN
@@ -312,6 +313,74 @@ const express       =       require("express"),
     );
   });
 
+
+  //SERVICES ROUTES
+  //SERVICE CHARGE/PRICE ROUTES
+  
+  //SHOW/INDEX ALL SERVICES AND THEIR PRICES
+  app.get("/admin/service/show",(req,res,next)=>{
+    if(req.isAuthenticated()&&req.user._id==adminID){
+        return next();
+    }    
+    res.redirect("/login");
+    }, 
+    (req,res)=>{
+    Price.find({}, function(err, allServices){
+        if(err){
+            console.log(err);
+        } else {
+            res.render("service-list", {allServices});
+        }
+    });
+});
+
+  //SHOW AN INDIVIDUAL SERVICE ROUTE
+  app.get("/admin/service/:id", (req,res)=>{
+    Price.findById(req.params.id, (err, foundService)=>{
+      if (err) {
+        console.log(err);
+      } else {
+        res.render("show-service", {foundService}); 
+      }
+    });
+  });
+
+  //EDIT-UPDATE SERVICE CHARGES
+  //EDIT SERVICES CHARGES GET ROUTE
+  app.get("/admin/service/:id/edit", (req,res,next)=>{
+    if(req.isAuthenticated()&&req.user._id==adminID){
+        return next();
+    }    
+    res.redirect("/login");
+    },
+    (req,res)=>{
+    Price.findById(req.params.id, (err,foundService)=>{
+      if (err) {
+        console.log(err);
+      } else {
+        res.render("edit-service", {foundService});
+      }
+    });
+  });
+
+//UPDATE SERVICE PUT ROUTE
+  app.put("/admin/service/:id",(req,res,next)=>{
+    if(req.isAuthenticated()&&req.user._id==adminID){
+        return next();
+    }    
+    res.redirect("/login");
+    },
+    (req,res)=>{
+    const editedService=req.body;
+    Price.findByIdAndUpdate(req.params.id, editedService, (err, updatedService)=>{
+        if (err) {
+          console.log(err);
+        } else {
+          res.redirect("/");
+        }
+      });
+  });
+  
   //----------------------------------------------------------//
 
   //----------------------------------------------------------//
@@ -327,39 +396,34 @@ const express       =       require("express"),
         });
     });
 
-    //STORE ORDER POST ROUTE
+    //STORE ORDER POST ROUTE  //CONFIRM ORDER PAGE ROUTE
     app.post("/user/:id/order", (req,res)=>{
       const id=req.params.id;
+      const newOrder=req.body;
       User.findById(id,(err,foundUser)=>{
         if (err) {
           console.log(err);
         } else {
-          const newOrder= req.body;
           Order.create(newOrder, (err, newOrder)=>{
             if (err) {
-            console.log(err);
+              console.log(err);
             } else {   
                   newOrder.save();             
                   foundUser.orders.push(newOrder);
-                  foundUser.save();
-                  res.redirect("/user/"+foundUser._id+"/payment");      
+                  foundUser.save();     
                 } 
             });
       }});
-    }); 
-    
-    //PAYMENT PAGE GET ROUTE
-    app.get("/user/:id/payment",(req,res)=>{
-      User.findById(req.params.id).populate('orders').exec((err,foundUser)=>{
+      Price.findOne({ 'serviceType': req.body.jobCategory }, (err, foundService)=>{
         if (err) {
           console.log(err);
         } else {
-          res.render("payments", {foundUser});
+          res.render("payments",{newOrder, foundService});  
         }
-      });
-    });
+      })
+    }); 
 
-    //SHOW USER'S ORDERS
+  //SHOW USER'S ORDERS
     app.get("/user/:id/order", (req,res)=>{
       User.findById(req.params.id).populate('orders').exec((err,foundUser)=>{
         if (err) {

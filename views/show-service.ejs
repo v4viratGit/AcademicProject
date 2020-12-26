@@ -1,0 +1,30 @@
+<!--HEADER-->
+<%- include("partials/header.ejs") %>
+
+<!--CONTENT-->
+<div class="container mt-5 border border-warning">
+    <div class="p-4">
+        <div class="d-flex justify-content-center">
+            <div class="text-center card" style="width: 18rem;">
+                <img src="/images/service.jpg" class="card-img-top" alt="Service">
+                <div class="card-body">
+                    <p class="card-text"><b><%= foundService.serviceType %> </b></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="border border-warning my-3 text-center">
+            <h5>Service charges</h5>
+            <p><%= foundService.serviceCharge %></p>
+            <h5>Part time charges</h5>
+            <p><%= foundService.partTimeCharge %></p>
+            <h5>Material charges</h5>
+            <p><%= foundService.materialCharge %></p>
+            <a href="/admin/service/<%= foundService._id%>/edit" class="my-1 btn btn-block btn-warning">Edit</a>
+        </div>
+    </div>
+</div>
+
+
+<!--FOOTER-->
+<%- include("partials/footer.ejs") %>

@@ -1,7 +1,7 @@
 <!--HEADER-->
 <%- include("partials/header.ejs") %>
 
-    <!-- TABLE TO SHOW ALL ORDERS -->
+<!-- TABLE TO SHOW ORDER DETAILS -->
 <div class="container">
     <div class="table-responsive">
     <table class="table" style="margin-top: 20px;">
@@ -10,110 +10,72 @@
           <th>Customer Name</th>
           <th>Job Category</th>
           <th>Job Type</th>
+          <th>Material</th>
           <th>No of Professionals</th>
-          <th>Amount</th>
+          <th>Address</th>
         </tr>
       </thead>
       <tbody> 
-       <%  for (let order of foundUser.orders) { 
-        if (order.jobCategory == "Deep Cleaning") {
-                var cost=500;
-                var no=0;
-                no=order.professionals;
-                var amount=0;
-                amount=cost*no;
-                if (order.jobType == "Part time 8am to 2pm" || order.jobType == "Part time 10am to 6pm") {
-                    var amt=amount;
-                    amt*=0.7;
-                    amount=Math.floor(amt);
-                }
-            }
-            else if (order.jobCategory == "Pest Control") {
-                var cost=1000;
-                var no=0;
-                no=order.professionals;
-                var amount=0;
-                amount=cost*no;
-                if (order.jobType == "Part time 8am to 2pm" || order.jobType == "Part time 10am to 6pm") {
-                    var amt=amount;
-                    amt*=0.7;
-                    amount=Math.floor(amt);
-                }
-            }
-            else if (order.jobCategory == "Sofa Cleaning") {
-                var cost=200;
-                var no=0;
-                no=order.professionals;
-                var amount=0;
-                amount=cost*no;
-                if (order.jobType == "Part time 8am to 2pm" || order.jobType == "Part time 10am to 6pm") {
-                    var amt=amount;
-                    amt*=0.7;
-                    amount=Math.floor(amt);
-                }
-            }
-            else if (order.jobCategory == "Mattress Cleaning") {
-                var cost=200;
-                var no=0;
-                no=order.professionals;
-                var amount=0;
-                amount=cost*no;
-                if (order.jobType == "Part time 8am to 2pm" || order.jobType == "Part time 10am to 6pm") {
-                    var amt=amount;
-                    amt*=0.7;
-                    amount=Math.floor(amt);
-                }
-            }
-            else if (order.jobCategory == "Car Wash") {
-                var cost=200;
-                var no=0;
-                no=order.professionals;
-                var amount=0;
-                amount=cost*no;
-                if (order.jobType == "Part time 8am to 2pm" || order.jobType == "Part time 10am to 6pm") {
-                    var amt=amount;
-                    amt*=0.7;
-                    amount=Math.floor(amt);
-                }
-            }
-            else if (order.jobCategory == "AC Cleaning") {
-                var cost=800;
-                var no=0;
-                no=order.professionals;
-                var amount=0;
-                amount=cost*no;
-                if (order.jobType == "Part time 8am to 2pm" || order.jobType == "Part time 10am to 6pm") {
-                    var amt=amount;
-                    amt*=0.7;
-                    amount=Math.floor(amt);
-                }
-            }
-            else if (order.jobCategory == "bouncer") {
-                var cost=2000;
-                var no=0;
-                no=order.professionals;
-                var amount=0;
-                amount=cost*no;
-                if (order.jobType == "Part time 8am to 2pm" || order.jobType == "Part time 10am to 6pm") {
-                    var amt=amount;
-                    amt*=0.7;
-                    amount=Math.floor(amt);
-                }
-            }
-          %>   
         <tr>
-          <td class="table-light"><%= order.name %></td>
-          <td class="table-light"><%= order.jobCategory %></td>
-          <td class="table-light"><%= order.jobType %></td>
-          <td class="table-light"><%= order.professionals %></td>
-          <td class="table-light"><%= amount %></td>
+          <td class="table-light"><%= newOrder.name %></td>
+          <td class="table-light"><%= newOrder.jobCategory %></td>
+          <td class="table-light"><%= newOrder.jobType %></td>
+          <td class="table-light"><%= newOrder.material %></td>
+          <td class="table-light"><%= newOrder.professionals %></td>
+          <td class="table-light"><%= newOrder.address %></td>
         </tr>
-        <%  }%>
       </tbody>
     </table>
     </div>
   </div>
   
+<!-- TABLE TO SHOW BILL SUMMARY -->
+<div class="container">
+    <div class="table-responsive">
+    <table class="table" style="margin-top: 20px;">
+      <thead>
+        <tr class="table-light">
+          <th>Job Category</th>
+          <th>Part time/Full time charges</th>
+          <th>Material Charges</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody> 
+        <tr>
+            <td class="table-light"><%= newOrder.name %></td>
+
+            <% 
+            var material=false, partTime=false;
+            if (newOrder.jobType=="Part time 10am to 6pm"||newOrder.jobType=="Part time 8am to 2pm") {
+                partTime=true;
+                foundService.serviceCharge=foundService.partTimeCharge;
+            }else if (newOrder.jobType=="Full time 8am to 8pm") {
+                partTime=false;
+            }
+            if (newOrder.material=="Needed"){
+                material=true;
+            }else if(newOrder.material=="Not needed"){
+              material=false;
+              foundService.materialCharge=0;
+            }
+            %> 
+          <%if (partTime==true) {%>
+             <td class="table-light">Part time: <%=foundService.serviceCharge%></td>
+          <%} else {%>
+            <td class="table-light">Full time: <%=foundService.serviceCharge%></td>
+          <%}%>
+          <%if (material==true) {%>
+            <td class="table-light">Needed: <%= foundService.materialCharge%></td>
+          <%} else {%>
+            <td class="table-light">Not needed: <%= foundService.materialCharge%></td>
+          <%}%>
+          <td class="table-light"><%=foundService.serviceCharge*newOrder.professionals+foundService.materialCharge%></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
 
 <!--FOOTER-->
 <%- include("partials/footer.ejs") %>
