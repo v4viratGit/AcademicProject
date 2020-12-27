@@ -88,9 +88,12 @@ const express       =       require("express"),
         };
         User.register(new User(newUser), req.body.password, (err, registeredUser)=>{
             if(err){
+                req.flash("error", "Something went wrong!");
+                res.redirect("/");
                 console.log(err);
             }
             passport.authenticate("local")(req, res, function(){
+                req.flash("success", "Welcome to RPServices, "+registeredUser.name+"!");
                 res.redirect("/");
             });
         });  
@@ -103,20 +106,24 @@ const express       =       require("express"),
     });
     //LOGIN FORM HANDLER POST ROUTE
     app.post("/user/login", passport.authenticate('local', { failureRedirect: '/',
-    failureFlash: true }),(req,res)=>{
+    failureFlash: 'Invalid username or password!' }),(req,res)=>{
+        req.flash("success", "Welcome back!");      
         res.redirect("/");
     });
 
     //USER LOGOUT
-    app.get("/user/logout", function (req,res) {
+    app.get("/user/logout",middleware.isLoggedIn, function (req,res) {
         req.logout(); 
+        req.flash("success", "Logged out!");
         res.redirect("/");
      });
 
      //FIND, READ, AND SHOW USER
-     app.get("/user/:id", (req,res)=>{
+     app.get("/user/:id",middleware.isLoggedIn, (req,res)=>{
         User.findById(req.params.id,(err, foundUser)=>{
           if (err) {
+            req.flash("error", "Something went wrong!");
+            res.redirect("/");
             console.log(err);
           } else {
             res.render("user-account", {foundUser});
@@ -126,10 +133,12 @@ const express       =       require("express"),
 
       //EDIT AND UPDATE USER INFORMATION
       //EDIT USER GET ROUTE
-      app.get("/user/:id/edit", (req,res)=>{
+      app.get("/user/:id/edit",middleware.isLoggedIn, (req,res)=>{
         const id=req.params.id;
         User.findById(id, (err,foundUser)=>{
           if (err) {
+            req.flash("error", "Something went wrong!");
+            res.redirect("/");
             console.log(err);
           } else {
             res.render("edit-profile", {foundUser});
@@ -137,7 +146,7 @@ const express       =       require("express"),
         });
       });
   //UPDATE USER PUT ROUTE
-      app.put("/user/:id",(req,res)=>{
+      app.put("/user/:id",middleware.isLoggedIn,(req,res)=>{
         const editedUser={
             name: req.body.name,
             username: req.body.username,
@@ -147,31 +156,30 @@ const express       =       require("express"),
         };
         User.findByIdAndUpdate(req.params.id, editedUser, (err, updatedUser)=>{
             if (err) {
+              req.flash("error", "Something went wrong!");
+              res.redirect("/");
               console.log(err);
             } else {
+              req.flash("success", "Profile update successful!")
               res.redirect("/");
             }
           });
       });
 
       //DELETE USER DELETE ROUTE
-      app.delete("/user/:id", (req,res)=>{
+      app.delete("/user/:id",middleware.isLoggedIn, (req,res)=>{
         User.findByIdAndDelete(req.params.id,(err)=>{
           if (err) {
+            req.flash("error", "Something went wrong!");
+            res.redirect("/");
             console.log(err);
           } else {
+            req.flash("success", "Successfully deleted user!");
             res.redirect("/")
           }
         }
         );
       });
-
-      
-
-
-
-
-
 
     //--------------------------------------------//
 
@@ -188,6 +196,8 @@ const express       =       require("express"),
         },(req,res)=>{
         Order.find({}, function(err, allOrders){
             if(err){
+                req.flash("error", "Something went wrong!");
+                res.redirect("/");
                 console.log(err);
             } else {
                 res.render("show-orders", {allOrders});
@@ -218,8 +228,11 @@ const express       =       require("express"),
         const newStaff=req.body;
         Staff.create(newStaff, (err, newStaff)=>{
         if (err) {
+          req.flash("error", "Something went wrong!");
+          res.redirect("/");
           console.log(err);
         } else {
+          req.flash("success", "Successfully added!");
           res.redirect("/");
         }
         }
@@ -237,7 +250,9 @@ const express       =       require("express"),
         (req,res)=>{
         Staff.find({}, function(err, allStaff){
             if(err){
-                console.log(err);
+              req.flash("error", "Something went wrong!");
+              res.redirect("/");
+              console.log(err);
             } else {
                 res.render("staff-list", {allStaff});
             }
@@ -253,6 +268,8 @@ const express       =       require("express"),
         (req,res)=>{
         Staff.findById(req.params.id,(err, foundStaff)=>{
           if (err) {
+            req.flash("error", "Something went wrong!");
+            res.redirect("/");
             console.log(err);
           } else {
             res.render("show-staff", {foundStaff});
@@ -271,6 +288,8 @@ const express       =       require("express"),
         (req,res)=>{
         Staff.findById(req.params.id, (err,foundStaff)=>{
           if (err) {
+            req.flash("error", "Something went wrong!");
+            res.redirect("/");
             console.log(err);
           } else {
             res.render("edit-staff", {foundStaff});
@@ -288,8 +307,11 @@ const express       =       require("express"),
         const editedStaff=req.body;
         Staff.findByIdAndUpdate(req.params.id, editedStaff, (err, updatedStaff)=>{
             if (err) {
+              req.flash("error", "Something went wrong!");
+              res.redirect("/");
               console.log(err);
             } else {
+              req.flash("success", "Successfully updated information!")
               res.redirect("/");
             }
           });
@@ -305,8 +327,11 @@ const express       =       require("express"),
     (req,res)=>{
     Staff.findByIdAndDelete(req.params.id,(err)=>{
       if (err) {
+        req.flash("error", "Something went wrong!");
+        res.redirect("/");
         console.log(err);
       } else {
+        req.flash("success", "Successfully deleted")
         res.redirect("/")
       }
     }
@@ -327,7 +352,9 @@ const express       =       require("express"),
     (req,res)=>{
     Price.find({}, function(err, allServices){
         if(err){
-            console.log(err);
+          req.flash("error", "Something went wrong!");
+          res.redirect("/");
+          console.log(err);
         } else {
             res.render("service-list", {allServices});
         }
@@ -335,9 +362,16 @@ const express       =       require("express"),
 });
 
   //SHOW AN INDIVIDUAL SERVICE ROUTE
-  app.get("/admin/service/:id", (req,res)=>{
+  app.get("/admin/service/:id", (req,res,next)=>{
+    if(req.isAuthenticated()&&req.user._id==adminID){
+        return next();
+    }    
+    res.redirect("/login");
+    }, (req,res)=>{
     Price.findById(req.params.id, (err, foundService)=>{
       if (err) {
+        req.flash("error", "Something went wrong!");
+        res.redirect("/");
         console.log(err);
       } else {
         res.render("show-service", {foundService}); 
@@ -356,6 +390,8 @@ const express       =       require("express"),
     (req,res)=>{
     Price.findById(req.params.id, (err,foundService)=>{
       if (err) {
+        req.flash("error", "Something went wrong!");
+        res.redirect("/");
         console.log(err);
       } else {
         res.render("edit-service", {foundService});
@@ -374,8 +410,11 @@ const express       =       require("express"),
     const editedService=req.body;
     Price.findByIdAndUpdate(req.params.id, editedService, (err, updatedService)=>{
         if (err) {
+          req.flash("error", "Something went wrong!");
+          res.redirect("/");
           console.log(err);
         } else {
+          req.flash("success", "Successfully updated information!")
           res.redirect("/");
         }
       });
@@ -386,10 +425,12 @@ const express       =       require("express"),
   //----------------------------------------------------------//
     //ORDER ROUTES
     //PLACE ORDER GET ROUTE
-    app.get("/user/:id/order/new",(req,res)=>{
+    app.get("/user/:id/order/new",middleware.isLoggedIn,(req,res)=>{
         Staff.find({}, function(err, allstaff){
             if(err){
-                console.log(err);
+              req.flash("error", "Something went wrong!");
+              res.redirect("/");
+              console.log(err);
             } else {
                 res.render("order-form", {allstaff});
             }
@@ -397,7 +438,7 @@ const express       =       require("express"),
     });
 
     //STORE ORDER POST ROUTE  //CONFIRM ORDER PAGE ROUTE
-    app.post("/user/:id/order", (req,res)=>{
+    app.post("/user/:id/order", middleware.isLoggedIn,(req,res)=>{
       const id=req.params.id;
       const newOrder=req.body;
       User.findById(id,(err,foundUser)=>{
@@ -406,6 +447,8 @@ const express       =       require("express"),
         } else {
           Order.create(newOrder, (err, newOrder)=>{
             if (err) {
+              req.flash("error", "Something went wrong!");
+              res.redirect("/");
               console.log(err);
             } else {   
                   newOrder.save();             
@@ -416,6 +459,8 @@ const express       =       require("express"),
       }});
       Price.findOne({ 'serviceType': req.body.jobCategory }, (err, foundService)=>{
         if (err) {
+          req.flash("error", "Something went wrong!");
+          res.redirect("/");
           console.log(err);
         } else {
           res.render("order-summary",{newOrder, foundService});  
@@ -424,15 +469,17 @@ const express       =       require("express"),
     }); 
 
     //MAKE PAYMENT ROUTE
-    app.get("/user/order/:total/payment", (req,res)=>{
+    app.get("/user/order/:total/payment",middleware.isLoggedIn, (req,res)=>{
       const Total=req.params.total;
       res.render("payments", {Total})
     })
 
   //SHOW USER'S ORDERS
-    app.get("/user/:id/order", (req,res)=>{
+    app.get("/user/:id/order", middleware.isLoggedIn,(req,res)=>{
       User.findById(req.params.id).populate('orders').exec((err,foundUser)=>{
         if (err) {
+          req.flash("error", "Something went wrong!");
+          res.redirect("/");
           console.log(err);
         } else {
           res.render("show-user-orders", {foundUser});
@@ -442,6 +489,10 @@ const express       =       require("express"),
 
   //--------------------------------------------------------//
 
+  //PAGE NOTFOUND ROUTE/DEFAULT ROUTE
+  app.get("*", (req,res)=>{
+    res.render("pagenotfound");
+  });
 
 //PORT LISTENER
 app.listen(3000, ()=>{

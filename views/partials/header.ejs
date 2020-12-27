@@ -66,3 +66,21 @@
       </div>
     </div>
   </nav>
+
+  <!--Flash alerts-->
+
+  <div class="container mt-2">
+    <% if(errorFlash && errorFlash.length>0){%>
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        <%= errorFlash%>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+    <% } else { %>
+       <% if(successFlash && successFlash.length>0){ %>
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <%= successFlash%>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+       <% } %> 
+    <% } %>
+  </div>
