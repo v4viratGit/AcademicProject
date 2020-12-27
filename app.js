@@ -418,10 +418,16 @@ const express       =       require("express"),
         if (err) {
           console.log(err);
         } else {
-          res.render("payments",{newOrder, foundService});  
+          res.render("order-summary",{newOrder, foundService});  
         }
       })
     }); 
+
+    //MAKE PAYMENT ROUTE
+    app.get("/user/order/:total/payment", (req,res)=>{
+      const Total=req.params.total;
+      res.render("payments", {Total})
+    })
 
   //SHOW USER'S ORDERS
     app.get("/user/:id/order", (req,res)=>{

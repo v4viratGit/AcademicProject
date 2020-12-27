@@ -1,0 +1,83 @@
+<!--HEADER-->
+<%- include("partials/header.ejs") %>
+
+<!-- TABLE TO SHOW ORDER DETAILS -->
+<div class="container">
+    <div class="table-responsive">
+    <table class="table" style="margin-top: 20px;">
+      <thead>
+        <tr class="table-light">
+          <th>Customer Name</th>
+          <th>Job Category</th>
+          <th>Job Type</th>
+          <th>Material</th>
+          <th>No of Professionals</th>
+          <th>Address</th>
+        </tr>
+      </thead>
+      <tbody> 
+        <tr>
+          <td class="table-light"><%= newOrder.name %></td>
+          <td class="table-light"><%= newOrder.jobCategory %></td>
+          <td class="table-light"><%= newOrder.jobType %></td>
+          <td class="table-light"><%= newOrder.material %></td>
+          <td class="table-light"><%= newOrder.professionals %></td>
+          <td class="table-light"><%= newOrder.address %></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+  
+<!-- TABLE TO SHOW BILL SUMMARY -->
+<div class="container">
+    <div class="table-responsive">
+    <table class="table" style="margin-top: 20px;">
+      <thead>
+        <tr class="table-light">
+          <th>Job Category</th>
+          <th>Part time/Full time charges</th>
+          <th>Material Charges</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody> 
+        <tr>
+            <td class="table-light"><%= newOrder.jobCategory %></td>
+
+            <% 
+            var material=false, partTime=false;
+            if (newOrder.jobType=="Part time 10am to 6pm"||newOrder.jobType=="Part time 8am to 2pm") {
+                partTime=true;
+                foundService.serviceCharge=foundService.partTimeCharge;
+            }else if (newOrder.jobType=="Full time 8am to 8pm") {
+                partTime=false;
+            }
+            if (newOrder.material=="Needed"){
+                material=true;
+            }else if(newOrder.material=="Not needed"){
+              material=false;
+              foundService.materialCharge=0;
+            }
+            %> 
+          <%if (partTime==true) {%>
+             <td class="table-light">Part time: <%=foundService.serviceCharge%></td>
+          <%} else {%>
+            <td class="table-light">Full time: <%=foundService.serviceCharge%></td>
+          <%}%>
+          <%if (material==true) {%>
+            <td class="table-light">Needed: <%= foundService.materialCharge%></td>
+          <%} else {%>
+            <td class="table-light">Not needed: <%= foundService.materialCharge%></td>
+          <%}%>
+          <% const Total= foundService.serviceCharge*newOrder.professionals+foundService.materialCharge;%> 
+          <td class="table-light"><%=Total%></td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+    <a href="/user/order/<%=Total%>/payment" class="btn btn-warning">Confirm</a>
+  </div>
+
+<!--FOOTER-->
+<%- include("partials/footer.ejs") %>

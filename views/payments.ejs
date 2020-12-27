@@ -1,81 +1,28 @@
 <!--HEADER-->
 <%- include("partials/header.ejs") %>
 
-<!-- TABLE TO SHOW ORDER DETAILS -->
-<div class="container">
-    <div class="table-responsive">
-    <table class="table" style="margin-top: 20px;">
-      <thead>
-        <tr class="table-light">
-          <th>Customer Name</th>
-          <th>Job Category</th>
-          <th>Job Type</th>
-          <th>Material</th>
-          <th>No of Professionals</th>
-          <th>Address</th>
-        </tr>
-      </thead>
-      <tbody> 
-        <tr>
-          <td class="table-light"><%= newOrder.name %></td>
-          <td class="table-light"><%= newOrder.jobCategory %></td>
-          <td class="table-light"><%= newOrder.jobType %></td>
-          <td class="table-light"><%= newOrder.material %></td>
-          <td class="table-light"><%= newOrder.professionals %></td>
-          <td class="table-light"><%= newOrder.address %></td>
-        </tr>
-      </tbody>
-    </table>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6">
+      <img class="img-fluid" src="/images/pay.jpeg" alt="Login page img">
     </div>
-  </div>
-  
-<!-- TABLE TO SHOW BILL SUMMARY -->
-<div class="container">
-    <div class="table-responsive">
-    <table class="table" style="margin-top: 20px;">
-      <thead>
-        <tr class="table-light">
-          <th>Job Category</th>
-          <th>Part time/Full time charges</th>
-          <th>Material Charges</th>
-          <th>Total</th>
-        </tr>
-      </thead>
-      <tbody> 
-        <tr>
-            <td class="table-light"><%= newOrder.name %></td>
+    <div class="col-md-6 border border-warning">
+      <div class="text-center p-3">
+        <img class="img-fluid" src="/images/upiapps.png" alt="Login page img">
 
-            <% 
-            var material=false, partTime=false;
-            if (newOrder.jobType=="Part time 10am to 6pm"||newOrder.jobType=="Part time 8am to 2pm") {
-                partTime=true;
-                foundService.serviceCharge=foundService.partTimeCharge;
-            }else if (newOrder.jobType=="Full time 8am to 8pm") {
-                partTime=false;
-            }
-            if (newOrder.material=="Needed"){
-                material=true;
-            }else if(newOrder.material=="Not needed"){
-              material=false;
-              foundService.materialCharge=0;
-            }
-            %> 
-          <%if (partTime==true) {%>
-             <td class="table-light">Part time: <%=foundService.serviceCharge%></td>
-          <%} else {%>
-            <td class="table-light">Full time: <%=foundService.serviceCharge%></td>
-          <%}%>
-          <%if (material==true) {%>
-            <td class="table-light">Needed: <%= foundService.materialCharge%></td>
-          <%} else {%>
-            <td class="table-light">Not needed: <%= foundService.materialCharge%></td>
-          <%}%>
-          <td class="table-light"><%=foundService.serviceCharge*newOrder.professionals+foundService.materialCharge%></td>
-        </tr>
-      </tbody>
-    </table>
+        <h2>Amount to be paid: <b><%= Total%></b></h2>
+
+        <p>You can scan the QR CODE form any UPI app and pay.<p>
+
+        <p>Once payment is successful, click on the button below and
+          wait for confirmation call from RPServices.
+        </p>
+
+        <a href="/" class="btn btn-warning my-2">Paid</a>
+      </div>
     </div>
   </div>
+</div>
 
 <!--FOOTER-->
 <%- include("partials/footer.ejs") %>
