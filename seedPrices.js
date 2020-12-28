@@ -45,6 +45,42 @@ const Services= [
         partTimeCharge: 70,
         materialCharge: 30,
     },
+    {
+        serviceType: "Laundry and Dry Cleaning",
+        serviceCharge: 100,
+        partTimeCharge: 70,
+        materialCharge: 30,
+    },
+    {
+        serviceType: "Handyman and Maintenance",
+        serviceCharge: 100,
+        partTimeCharge: 70,
+        materialCharge: 30,
+    },
+    {
+        serviceType: "Bodyguard",
+        serviceCharge: 100,
+        partTimeCharge: 70,
+        materialCharge: 30,
+    },
+    {
+        serviceType: "Event Security",
+        serviceCharge: 100,
+        partTimeCharge: 70,
+        materialCharge: 30,
+    },
+    {
+        serviceType: "Bank Security",
+        serviceCharge: 100,
+        partTimeCharge: 70,
+        materialCharge: 30,
+    },
+    {
+        serviceType: "Residential Security",
+        serviceCharge: 100,
+        partTimeCharge: 70,
+        materialCharge: 30,
+    },
 ];
 
 //SEEDING DB

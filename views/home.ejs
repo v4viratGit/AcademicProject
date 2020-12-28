@@ -6,10 +6,12 @@
 <div class="container border border-warning my-2">
     <div class="row text-center">
       <div class="col-md-6 my-2 d-flex flex-column justify-content-center align-items-center">
+            <img class="img-fluid" src="/images/logo home.jpg" alt="logo img">
             <h2>Welcome to RPServices!</h1>
-            <h4>The best place to get maids online in India</h4>
-            <h6>#1 HOME CLEANING SERVICE</h6>
-            <button type="button" class="btn btn-warning">Book Now</button>
+            <h4>Housekeeping and Security Providers</h4>
+            <h6>#1 HOUSEKEEPING</h6>
+            <h6>#1 SECURITY PROVIDERS</h6>
+            <a href="/user/login" class="btn btn-warning">Book Now</a>
       </div>
       <div class="col-md-6 my-2">
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
@@ -60,7 +62,11 @@
               <p class="card-text">Clear your home of unwanted pests.</p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-warning">BOOK NOW</a>
+              <% if (currentUser) { %>
+                <a href="/user/<%= currentUser._id %> /order/new" class="btn btn-warning">BOOK NOW</a>
+              <% } else { %>
+                <a href="/user/login" class="btn btn-warning">BOOK NOW</a>
+              <% } %> 
             </div>
           </div>
         </div>
@@ -73,7 +79,11 @@
               <p class="card-text">We provide you with the best experts for your furniture.</p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-warning">BOOK NOW</a>
+              <% if (currentUser) { %>
+                <a href="/user/<%= currentUser._id %> /order/new" class="btn btn-warning">BOOK NOW</a>
+              <% } else { %>
+                <a href="/user/login" class="btn btn-warning">BOOK NOW</a>
+              <% } %> 
             </div>
           </div>
         </div>
@@ -86,7 +96,11 @@
               <p class="card-text">We can clean your mattress too.</p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-warning">BOOK NOW</a>
+              <% if (currentUser) { %>
+                <a href="/user/<%= currentUser._id %> /order/new" class="btn btn-warning">BOOK NOW</a>
+              <% } else { %>
+                <a href="/user/login" class="btn btn-warning">BOOK NOW</a>
+              <% } %> 
             </div>
           </div>
         </div>
@@ -99,7 +113,11 @@
               <p class="card-text">Get your car washed whenever you want.</p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-warning">BOOK NOW</a>
+              <% if (currentUser) { %>
+                <a href="/user/<%= currentUser._id %> /order/new" class="btn btn-warning">BOOK NOW</a>
+              <% } else { %>
+                <a href="/user/login" class="btn btn-warning">BOOK NOW</a>
+              <% } %> 
             </div>
           </div>
         </div>
@@ -112,7 +130,11 @@
               <p class="card-text">We provide your home with the clean air it deserves.</p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-warning">BOOK NOW</a>
+              <% if (currentUser) { %>
+                <a href="/user/<%= currentUser._id %> /order/new" class="btn btn-warning">BOOK NOW</a>
+              <% } else { %>
+                <a href="/user/login" class="btn btn-warning">BOOK NOW</a>
+              <% } %> 
             </div>
           </div>
         </div>
@@ -125,7 +147,11 @@
               <p class="card-text">Get your laundry picked up and delivered to you at your convenience.</p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-warning">BOOK NOW</a>
+              <% if (currentUser) { %>
+                <a href="/user/<%= currentUser._id %> /order/new" class="btn btn-warning">BOOK NOW</a>
+              <% } else { %>
+                <a href="/user/login" class="btn btn-warning">BOOK NOW</a>
+              <% } %> 
             </div>
           </div>
         </div>
@@ -138,10 +164,83 @@
               <p class="card-text">Get a professional and verified handyman service.</p>
             </div>
             <div class="card-footer">
-              <a href="#" class="btn btn-warning">BOOK NOW</a>
+              <% if (currentUser) { %>
+                <a href="/user/<%= currentUser._id %> /order/new" class="btn btn-warning">BOOK NOW</a>
+              <% } else { %>
+                <a href="/user/login" class="btn btn-warning">BOOK NOW</a>
+              <% } %> 
             </div>
           </div>
         </div>
+
+        <div class="col-6 col-md-3">
+          <div class="card text-center h-100">
+            <img src="/images/bodyguard.jpg" class="card-img-top" alt="security">
+            <div class="card-body">
+              <h5 class="card-title">Bodyguard</h5>
+              <p class="card-text">Get a professional and verified bodyguard.</p>
+            </div>
+            <div class="card-footer">
+              <% if (currentUser) { %>
+                <a href="/user/<%= currentUser._id %> /order/new" class="btn btn-warning">BOOK NOW</a>
+              <% } else { %>
+                <a href="/user/login" class="btn btn-warning">BOOK NOW</a>
+              <% } %> 
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <div class="card text-center h-100">
+            <img src="/images/event security.jpg" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title">Event Security</h5>
+              <p class="card-text">We offer protection for all kind of function / Entertainment / artistic shows.</p>
+            </div>
+            <div class="card-footer">
+              <% if (currentUser) { %>
+                <a href="/user/<%= currentUser._id %> /order/new" class="btn btn-warning">BOOK NOW</a>
+              <% } else { %>
+                <a href="/user/login" class="btn btn-warning">BOOK NOW</a>
+              <% } %> 
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <div class="card text-center h-100">
+            <img src="/images/bank security.jpg" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title">Bank Security</h5>
+              <p class="card-text">We have guards trained in handling waepons for bank protection.</p>
+            </div>
+            <div class="card-footer">
+              <% if (currentUser) { %>
+                <a href="/user/<%= currentUser._id %> /order/new" class="btn btn-warning">BOOK NOW</a>
+              <% } else { %>
+                <a href="/user/login" class="btn btn-warning">BOOK NOW</a>
+              <% } %> 
+            </div>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-3">
+          <div class="card text-center h-100">
+            <img src="/images/residential security.jpg" class="card-img-top" alt="">
+            <div class="card-body">
+              <h5 class="card-title">Residential Security</h5>
+              <p class="card-text">Protect your house with our professionals security guards</p>
+            </div>
+            <div class="card-footer">
+              <% if (currentUser) { %>
+                <a href="/user/<%= currentUser._id %> /order/new" class="btn btn-warning">BOOK NOW</a>
+              <% } else { %>
+                <a href="/user/login" class="btn btn-warning">BOOK NOW</a>
+              <% } %> 
+            </div>
+          </div>
+        </div>
+
 
       </div>
     </div>
@@ -150,28 +249,26 @@
 
 <!--EXTRA INFORMATION-->
 <!--CAROUSEL AND LANDING PAGE GREETING-->
-<div class="container border border-warning my-3">
-  <div class="row text-center">
-    <div class="col-md-6 my-2 d-flex flex-column justify-content-center align-items-center">
-          <h2>Welcome to RPServices!</h1>
-          <h4>The best place to get maids online in India</h4>
-          <h6>#1 HOME CLEANING SERVICE</h6>
-          <button type="button" class="btn btn-warning">Book Now</button>
+<div class="container border border-warning my-3 p-2">
+  <div class="row g-2">
+    <h5>Our clients</h5>
+    <div class="col-3 col-md-2">
+      <img class="img-fluid" src="/images/client1.jpg" alt="Client 1">
     </div>
-    <div class="col-md-6 my-2">
-      <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-          <div class="carousel-item active">
-            <img src="/images/image.jpg" class="d-block w-100" alt="carousel image 1">
-          </div>
-          <div class="carousel-item">
-            <img src="/images/image1.jpg" class="d-block w-100" alt="carousel image 2">
-          </div>
-          <div class="carousel-item">
-            <img src="/images/image2.jpg" class="d-block w-100" alt="carousel image 3">
-          </div>
-        </div>
-      </div>
+    <div class="col-3 col-md-2">
+      <img class="img-fluid" src="/images/client2.jpg" alt="Client 2">
+    </div>
+    <div class="col-3 col-md-2">
+      <img class="img-fluid" src="/images/client3.jpg" alt="Client 3">
+    </div>
+    <div class="col-3 col-md-2">
+      <img class="img-fluid" src="/images/client4.jpg" alt="Client 4">
+    </div>
+    <div class="col-3 col-md-2">
+      <img class="img-fluid" src="/images/client5.jpg" alt="Client 5">
+    </div>
+    <div class="col-3 col-md-2">
+      <img class="img-fluid" src="/images/client6.jpg" alt="Client 6">
     </div>
   </div>
 </div>
