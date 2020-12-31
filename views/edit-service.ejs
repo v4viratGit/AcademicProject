@@ -8,23 +8,50 @@
         <img class="img-fluid" src="/images/Login page img.jpg" alt="Login page img">
       </div>
       <div class="col-md-6 border border-warning">
-        <form action="/admin/service/<%=foundService._id%>?_method=PUT" method="POST" class="text-center">
+        <form action="/admin/service/<%=foundService._id%>?_method=PUT" method="POST" class="text-center needs-validation" novalidate>
             <h1>Update Charges</h1>
              <div class="mb-3">
-                <input type="text" name="serviceType" class="form-control border border-warning" placeholder="<%=foundService.serviceType%>" value="<%=foundService.serviceType%>">
+                <input type="text" name="serviceType" class="form-control border border-warning" placeholder="<%=foundService.serviceType%>" value="<%=foundService.serviceType%>" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Please enter service name!
+                </div>
             </div>
-            <div class="mb-3">
-                <input type="text" name="serviceCharge" class="form-control border border-warning" placeholder="<%=foundService.serviceCharge%>" required>
-            </div> 
-            <div class="mb-3">
-                <input type="text" name="partTimeCharge" class="form-control border border-warning" placeholder="<%=foundService.partTimeCharge%>" required>
-            </div> 
-            <div class="mb-3">
-                <input type="text" name="materialCharg" class="form-control border border-warning" placeholder="<%=foundService.materialCharge%>" required>
-            </div> 
-            <div class="d-grid gap-2 col-6 mx-auto my-3">
-                <button type="submit" class="btn btn-block btn-warning">Update</button>
-            </div> 
+
+            <div class="mb-3">              
+              <input type="text" name="serviceCharge" class="form-control border border-warning" placeholder="<%=foundService.serviceCharge%>" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please enter service charge!
+              </div>
+          </div>
+
+          <div class="mb-3">
+            <input type="text" name="partTimeCharge" class="form-control border border-warning" placeholder="<%=foundService.partTimeCharge%>" required>
+            <div class="valid-feedback">
+              Looks good!
+            </div>
+            <div class="invalid-feedback">
+              Please enter part-time charge!
+            </div>
+        </div>
+
+          <div class="mb-3">
+              <input type="text" name="materialCharge" class="form-control border border-warning" placeholder="<%=foundService.materialCharge%>" required>
+              <div class="valid-feedback">
+                Looks good!
+              </div>
+              <div class="invalid-feedback">
+                Please enter material charge!
+              </div>
+          </div>
+          <div class="d-grid gap-2 col-6 mx-auto my-3">
+              <button type="submit" class="btn btn-block btn-warning">Update</button>
+          </div> 
         </form>
       </div>
     </div>

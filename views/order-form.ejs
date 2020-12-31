@@ -2,102 +2,151 @@
 <%- include("partials/header.ejs") %>
 
     <!-- FORM TO ORDER PROFESSIONALS -->
-        <div class="container">
-            <div class="card border border-warning my-4 cardcss">
-                <div class="card-header text-dark bg-warning">
-                <h5>Order Here</h5>    
-                </div>
-                <div class="card-body">
-                    <form action="/user/<%= currentUser._id %>/order" method="POST">
-                        <!-- TO ACCEPT NAME -->
-                        <div class="mb-3">
-                            <input type="text" name="name" class="form-control border border-warning" placeholder="Enter Full Name" required>
-                        </div>                        
-                        <!-- SELECT SCHEDULE OF WORK -->
-                        <div class="mb-3">
-                            <select name="jobCategory" class="form-select border border-warning" aria-label="Select Job Category">
-                                <option value="Deep Cleaning">Deep Cleaning</option>
-                                <option value="Pest Control">Pest Control</option>
-                                <option value="Sofa Cleaning">Sofa Cleaning</option>
-                                <option value="Mattress Cleaning">Mattress Cleaning</option>
-                                <option value="Car Wash">Car Wash</option>
-                                <option value="AC Cleaning">AC Cleaning</option>
-                                <option value="Laundry and Dry Cleaning">Laundry and Dry Cleaning</option>
-                                <option value="Handyman and Maintenance">Handyman and Maintenance</option>
-                                <option value="Bodyguard">Bodyguard</option>
-                                <option value="Event Security">Event Security</option>
-                                <option value="Bank Security">Bank Security</option>
-                                <option value="Residential Security">Residential Security</option>
-                            </select>
-                        </div>
-                        <!-- TO SELECT TIME PERIOD OF WORK -->
-                        <div class="mb-3">
-                            <select name="jobType" class="form-select border border-warning" aria-label="hours of work">
-                                <option value="Not selected">Select Type of job</option>
-                                <option value="Part time 8am to 2pm">Part time (8am to 2pm)</option>
-                                <option value="Part time 10am to 6pm">Part time (10am to 6pm)</option>
-                                <option value="Full time 8am to 8pm">Full time (8am to 8pm)</option>
-                            </select>
-                        </div>
-                        <!-- TO SELECT NUMBER OF SERVENTS FOR WORK -->
-                        <div class="mb-3">
-                            <select name="professionals" class="form-select border border-warning" aria-label="Professionals Required">
-                                <option value="1">Select Required Professionals</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </div>  
-                        <!-- FOR CHECKING AVAILABILITY OF MATERIAL -->
-                        <div class="mb-3 border-warning border-bottom">
-                            <label class="form-label">Do you need cleaning material ?</label><br>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="material" value="Not needed" id="flexRadioDefault1" checked>
-                                <label class="form-check-label" for="flexRadioDefault1">
-                                  No, I have!
-                                </label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="material"value="Needed" id="flexRadioDefault2">
-                                <label class="form-check-label" for="flexRadioDefault2">
-                                  Yes, please!
-                                </label>
-                            </div>
-                        </div>
-                        <!-- TO CHOOSE PROFESSIONALS -->
-                        <div class="mb-3 border-warning border-bottom">
-                            <label class="form-label">Choose Professional</label><br>
-                            <% allstaff.forEach(function(staff){ %>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="checkbox" name="staff[]" value="<%= staff.name %>" id="defaultCheck1">
-                                <label class="form-check-label" for="defaultCheck1">
-                                    <%= staff.name %>
-                                    <%= staff.skills %>
-                                </label>
-                            </div>
-                            <% }) %>
-                        </div>
-                        <!-- TO CHOOSE DATE AND TIME TO START WORK -->
-                        <div class="mb-3">
-                            <label class="form-label">Select date-time to start work</label><br>
-                            <input type="datetime-local" name="datetime" class="form-control border border-warning" required>
-                        </div> 
-                        <!-- TO ACCEPT ADDRESS -->
-                        <div class="mb-3">
-                            <input type="text" name="address" class="form-control border border-warning" placeholder="Enter Your Address" required>
-                        </div> 
-                        <div class="mb-3">
-                            <input type="tel" name="mobile" class="form-control border border-warning" placeholder="Enter Mobile Number" required>
-                        </div>     
-                        <div class="d-grid gap-2 col-6 mx-auto my-3">
-                            <button type="submit" class="btn btn-block btn-warning">Submit Order</button>
-                        </div> 
-                    </form>
-                </div>
-              </div>
+<div class="container">
+    <div class="card border border-warning my-4 cardcss">
+        <div class="card-header text-dark bg-warning">
+            <h5>Order Here</h5>    
         </div>
+        <div class="card-body">
+            <form action="/user/<%= currentUser._id %>/order" method="POST" class="needs-validation" novalidate>
+                   
+                <div class="mb-3">
+                    <input type="text" name="name" class="form-control border border-warning" placeholder="Enter Full Name" required>
+                
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter name!
+                    </div>   
+                </div>                        
+                        
+                <div class="mb-3">
+                    <select name="jobCategory" class="form-select border border-warning" aria-label="Select Job Category" required>
+                        <option value="Deep Cleaning">Deep Cleaning</option>
+                        <option value="Pest Control">Pest Control</option>
+                        <option value="Sofa Cleaning">Sofa Cleaning</option>
+                        <option value="Mattress Cleaning">Mattress Cleaning</option>
+                        <option value="Car Wash">Car Wash</option>
+                        <option value="AC Cleaning">AC Cleaning</option>
+                        <option value="Laundry and Dry Cleaning">Laundry and Dry Cleaning</option>
+                        <option value="Handyman and Maintenance">Handyman and Maintenance</option>
+                        <option value="Bodyguard">Bodyguard</option>
+                        <option value="Event Security">Event Security</option>
+                        <option value="Bank Security">Bank Security</option>
+                        <option value="Residential Security">Residential Security</option>
+                    </select>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please select job category!
+                    </div>    
+                </div>
+
+
+
+                <div class="mb-3">
+                    <select name="jobType" class="form-select border border-warning" aria-label="hours of work" required>
+                        <option value="Not selected">Select Type of job</option>
+                        <option value="Part time 8am to 2pm">Part time (8am to 2pm)</option>
+                        <option value="Part time 10am to 6pm">Part time (10am to 6pm)</option>
+                        <option value="Full time 8am to 8pm">Full time (8am to 8pm)</option>
+                    </select>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please select!
+                    </div>        
+                </div>
+                                     
+                <div class="mb-3">
+                    <select name="professionals" class="form-select border border-warning" aria-label="Professionals Required" required>
+                        <option value="1">Select Required Professionals</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please select number of employees!
+                    </div>        
+                </div>  
+ 
+                <div class="mb-3 border-warning border-bottom">
+                    <label class="form-label">Do you need cleaning material ?</label><br>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="material" value="Not needed" id="flexRadioDefault1" checked>
+                        <label class="form-check-label" for="flexRadioDefault1">
+                            No, I have!
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="material"value="Needed" id="flexRadioDefault2">
+                        <label class="form-check-label" for="flexRadioDefault2">
+                            Yes, please!
+                        </label>
+                    </div>
+                </div>
+                        
+                <div class="mb-3 border-warning border-bottom">
+                    <label class="form-label">Choose Professional</label><br>
+                    <% allstaff.forEach(function(staff){ %>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="staff[]" value="<%= staff.name %>" id="defaultCheck1">
+                        <label class="form-check-label" for="defaultCheck1">
+                            <%= staff.name %>
+                            <%= staff.skills %>
+                        </label>
+                    </div>
+                    <% }) %>
+                </div>
+                        
+                <div class="mb-3">
+                    <label class="form-label">Select date-time to start work</label><br>
+                    <input type="datetime-local" name="datetime" class="form-control border border-warning" required>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please select date and time!
+                    </div>    
+                </div> 
+                        
+                <div class="mb-3">
+                    <input type="text" name="address" class="form-control border border-warning" placeholder="Enter Your Address" required>
+                
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Please enter address!
+                    </div>    
+                </div>
+
+                <div class="mb-3">
+                    <input type="tel" name="mobile" class="form-control border border-warning" placeholder="Enter Mobile Number" required>
+                  
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                    <div class="invalid-feedback">
+                        Enter phone number!
+                    </div>
+                </div>    
+
+                <div class="d-grid gap-2 col-6 mx-auto my-3">
+                    <button type="submit" class="btn btn-block btn-warning">Submit Order</button>
+                </div> 
+            </form>
+        </div>
+    </div>
+</div>
 
 <!--FOOTER-->
 <%- include("partials/footer.ejs") %>

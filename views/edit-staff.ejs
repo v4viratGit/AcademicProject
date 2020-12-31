@@ -8,32 +8,66 @@
         <img class="img-fluid" src="/images/Login page img.jpg" alt="Login page img">
       </div>
       <div class="col-md-6 border border-warning">
-        <form action="/admin/staff/<%=foundStaff._id%>?_method=PUT" method="POST" class="text-center">
+        <form action="/admin/staff/<%=foundStaff._id%>?_method=PUT" method="POST" class="text-center needs-validation" novalidate>
             <h1>Update Profile</h1>
-             <!-- TO ACCEPT NAME -->
              <div class="mb-3">
                 <input type="text" name="name" class="form-control border border-warning" placeholder="<%= foundStaff.name %> " required>
-            </div>
-            <!-- SELECT GENDER -->
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Name can't be empty!
+                </div>
+             </div> 
+
             <div class="mb-3">
-                <select name="gender" class="form-select border border-warning" aria-label="Select Gender">option>
+                <select name="gender" class="form-select border border-warning" aria-label="Select Gender" required>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                     <option value="Other">Other</option>
                 </select>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  You must select a gender!
+                </div>
             </div>
-            <!-- TO ACCEPT ADDRESS -->
+            
+
+
             <div class="mb-3">
-                <input type="text" name="address" class="form-control border border-warning" placeholder="<%= foundStaff.address %> " required>
+                <input type="text" name="address" class="form-control border border-warning" placeholder="<%= foundStaff.address %>" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Address is necessary!
+                </div>
             </div> 
-            <!-- TO ACCEPT MOBILE NUMBER -->
+
+
             <div class="mb-3">
-                <input type="tel" name="phone" class="form-control border border-warning" placeholder="<%= foundStaff.phone %> " required>
+                <input type="tel" name="phone" class="form-control border border-warning" placeholder="<%= foundStaff.phone %>" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Please add a phone number!
+                </div>
+    
             </div>     
-            <!-- TO ACCEPT SKILLS -->
+
             <div class="mb-3">
-                <input type="text" name="skills" class="form-control border border-warning" placeholder="<%= foundStaff.skills %> " required>
+                <input type="text" name="skills" class="form-control border border-warning" placeholder="<%= foundStaff.skills %>" required>
+                <div class="valid-feedback">
+                  Looks good!
+                </div>
+                <div class="invalid-feedback">
+                  Skills are needed!
+                </div>
             </div>
+          
             <div class="d-grid gap-2 col-6 mx-auto my-3">
                 <button type="submit" class="btn btn-block btn-warning">Update</button>
             </div> 
